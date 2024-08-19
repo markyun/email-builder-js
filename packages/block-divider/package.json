@@ -1,14 +1,14 @@
 {
   "name": "@usewaypoint/block-divider",
-  "version": "0.0.4",
-  "description": "@usewaypoint/document compatible Divider component",
+  "version": "0.0.5",
+  "description": "DIY @usewaypoint/document compatible Divider component",
   "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "require": "./dist/index.js",
-      "import": "./dist/index.mjs",
+      "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     }
   },
@@ -16,6 +16,7 @@
     "dist"
   ],
   "scripts": {
+    "build": "npx tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "carlos@usewaypoint.com",

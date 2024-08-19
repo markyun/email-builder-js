@@ -20,6 +20,7 @@ type TButtonProps = {
   icon: JSX.Element;
   block: () => TEditorBlock;
 };
+// 渲染按钮，添加页面组件
 export const BUTTONS: TButtonProps[] = [
   {
     label: 'Heading',
@@ -57,7 +58,7 @@ export const BUTTONS: TButtonProps[] = [
       data: {
         props: {
           text: 'Button',
-          url: 'https://www.usewaypoint.com',
+          url: 'https://www.xxx.com',
         },
         style: { padding: { top: 16, bottom: 16, left: 24, right: 24 } },
       },
@@ -101,7 +102,7 @@ export const BUTTONS: TButtonProps[] = [
       data: {
         style: { padding: { top: 16, right: 0, bottom: 16, left: 0 } },
         props: {
-          lineColor: '#CCCCCC',
+          lineColor: '#e5e5e5',
         },
       },
     }),

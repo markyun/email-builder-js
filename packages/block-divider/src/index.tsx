@@ -32,6 +32,7 @@ export const DividerPropsSchema = z.object({
     .object({
       lineColor: COLOR_SCHEMA,
       lineHeight: z.number().optional().nullable(),
+      opacity: z.number().optional().nullable(),
     })
     .optional()
     .nullable(),
@@ -42,6 +43,7 @@ export type DividerProps = z.infer<typeof DividerPropsSchema>;
 export const DividerPropsDefaults = {
   lineHeight: 1,
   lineColor: '#333333',
+  opacity: 100,
 };
 
 export function Divider({ style, props }: DividerProps) {
@@ -51,6 +53,8 @@ export function Divider({ style, props }: DividerProps) {
   };
   const borderTopWidth = props?.lineHeight ?? DividerPropsDefaults.lineHeight;
   const borderTopColor = props?.lineColor ?? DividerPropsDefaults.lineColor;
+  const opacity = props?.opacity ?? DividerPropsDefaults.opacity;
+
   return (
     <div style={st}>
       <hr
@@ -59,6 +63,7 @@ export function Divider({ style, props }: DividerProps) {
           border: 'none',
           borderTop: `${borderTopWidth}px solid ${borderTopColor}`,
           margin: 0,
+          opacity: `${opacity}%`,
         }}
       />
     </div>

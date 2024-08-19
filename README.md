@@ -7,6 +7,55 @@
   </p>
 </div>
 
+
+## 需要改造和添加的功能：
+
+1、支持透明度设置
+2、支持高度设置，设置文字超出宽度的 ...
+3、支持使用本地图像文件或 Base 64 图，必须使用云盘或者不限制外链的图片源。
+---
+1、栅格能控制 各自占比
+2、一段文本，不能编辑，比如 控制部分颜色 高亮，加粗等，添加富文本 web 的组件。
+3、没有结构 json 树状图。由于没有结构，导致不支持拖拽排序。
+4、组件不展示，只能在布局中选择，容易误操作。
+5、宏变量、标签等。
+
+
+
+选型对比：
+EmailBuilder
+https://usewaypoint.github.io/email-builder-js/#sample/subscription-receipt
+
+EmailBuilder Pro
+https://dashboard.usewaypoint.com/
+
+竞品 1、Easy Email
+https://email.maocanhua.cn/emails/editor/clz6d8ley002409mhpl96n61p
+
+Easy Email Pro
+https://demo.easyemail.pro/full?utm_source=github-live
+
+
+竞品 2、mailjet
+https://app.mailjet.com/campaigns/newsletter/436901/build
+
+
+
+## Self hosting the Editor
+
+Fork this repository and use [packages/editor-sample](https://github.com/usewaypoint/email-builder-js/tree/main/packages/editor-sample) as an example for self-hosting.
+
+Quick start:
+
+1. Fork this repository.
+2. Open up directory in terminal.
+3. Go to the editor-sample package: `cd packages/editor-sample`
+4. Install packages: `npm install`
+5. Run the server: `npx vite`
+6. Open in browser: http://localhost:5173/email-builder-js/
+
+---
+
 ## Introduction
 
 EmailBuilder.js is a free and open-source email template builder for developers. Build emails faster than ever with clean JSON or HTML output that render well across clients and devices.

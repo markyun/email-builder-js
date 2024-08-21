@@ -32,6 +32,7 @@ export default function TextSidebarPanel({ data, setData }: TextSidebarPanelProp
         defaultValue={data.props?.text ?? ''}
         onChange={(text) => updateData({ ...data, props: { ...data.props, text } })}
       />
+      <div className='text-sm text-gray-500'>GitHub Flavored Markdown and Liquid templating supported.</div>
       <BooleanInput
         label="Markdown"
         defaultValue={data.props?.markdown ?? false}

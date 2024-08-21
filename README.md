@@ -23,7 +23,9 @@
 
 
 选型对比：
+
 EmailBuilder
+https://github.com/usewaypoint/email-builder-js
 https://usewaypoint.github.io/email-builder-js/#sample/subscription-receipt
 
 EmailBuilder Pro

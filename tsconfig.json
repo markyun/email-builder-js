@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es2015",
     "module": "esnext",
-    "lib": [],
+    "lib": ["dom", "es6"],      // 列出相关的库
     "moduleResolution": "node",
     "jsx": "react",
     "strict": true,
@@ -11,12 +11,15 @@
     "esModuleInterop": true,
 
     "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
     "declarationMap": true,
     "declaration": true,
     "noUnusedLocals": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "typeRoots": ["node_modules/@types"],   // 确保包含这一行
+    "types": ["react", "react-dom"]         // 确保包含这一行
   },
   "exclude": ["dist"]
 }

@@ -31,6 +31,7 @@ export default function HtmlSidebarPanel({ data, setData }: HtmlSidebarPanelProp
         defaultValue={data.props?.contents ?? ''}
         onChange={(contents) => updateData({ ...data, props: { ...data.props, contents } })}
       />
+      <div>HTML supported.</div>
       <MultiStylePropertyPanel
         names={['color', 'backgroundColor', 'fontFamily', 'fontSize', 'textAlign', 'padding']}
         value={data.style}

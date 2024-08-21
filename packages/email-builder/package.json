@@ -28,7 +28,7 @@
   "dependencies": {
     "@usewaypoint/block-avatar": "^0.0.3",
     "@usewaypoint/block-button": "^0.0.3",
-    "@usewaypoint/block-columns-container": "^0.0.3",
+    "@usewaypoint/block-columns-container": "file:../block-columns-container",
     "@usewaypoint/block-container": "^0.0.2",
     "@usewaypoint/block-divider": "file:../block-divider",
     "@usewaypoint/block-heading": "^0.0.3",

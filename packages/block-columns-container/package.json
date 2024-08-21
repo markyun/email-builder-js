@@ -1,7 +1,7 @@
 {
   "name": "@usewaypoint/block-columns-container",
   "version": "0.0.3",
-  "description": "@usewaypoint/document compatible ColumnsContainer component",
+  "description": "DIY @usewaypoint/document compatible ColumnsContainer component",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -16,6 +16,7 @@
     "dist"
   ],
   "scripts": {
+    "build": "npx tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "carlos@usewaypoint.com",

@@ -1,6 +1,6 @@
-import React from 'react';
-
+import React, { useState, useEffect } from 'react';
 import { Stack, useTheme } from '@mui/material';
+import { Liquid } from 'liquidjs';
 
 import { useInspectorDrawerOpen, useSamplesDrawerOpen } from '../documents/editor/EditorContext';
 
@@ -17,17 +17,34 @@ function useDrawerTransition(cssProperty: 'margin-left' | 'margin-right', open: 
 }
 
 export default function App() {
+  const [templateOutput, setTemplateOutput] = useState('');
+
   const inspectorDrawerOpen = useInspectorDrawerOpen();
   const samplesDrawerOpen = useSamplesDrawerOpen();
 
   const marginLeftTransition = useDrawerTransition('margin-left', samplesDrawerOpen);
   const marginRightTransition = useDrawerTransition('margin-right', inspectorDrawerOpen);
 
+  // Liquid 变量测试
+  useEffect(() => {
+    const engine = new Liquid({
+      cache: process.env.NODE_ENV === 'production'
+    });
+
+    const data = { name: 'Ma.jinyun', test: 'test11' };
+    const template = `Hello, {{ name }} + {{ test }}!`;
+    engine.parseAndRender(template, data).then(rendered => {
+      setTemplateOutput(rendered);
+    });
+  }, []); // 空依赖数组确保这个 effect 只运行一次
+
   return (
     <>
+      {/* 左侧模板 */}
       <InspectorDrawer />
+      {/* 右侧属性修改 */}
       <SamplesDrawer />
-
+       {/* Editor Block */}
       <Stack
         sx={{
           marginRight: inspectorDrawerOpen ? `${INSPECTOR_DRAWER_WIDTH}px` : 0,
@@ -35,6 +52,7 @@ export default function App() {
           transition: [marginLeftTransition, marginRightTransition].join(', '),
         }}
       >
+        {templateOutput}
         <TemplatePanel />
       </Stack>
     </>

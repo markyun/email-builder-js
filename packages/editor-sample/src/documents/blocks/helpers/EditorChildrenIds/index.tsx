@@ -12,13 +12,19 @@ export type EditorChildrenChange = {
 };
 
 function generateId() {
-  return `block-${Date.now()}`;
+  return `email-block-${Date.now()}`;
 }
 
 export type EditorChildrenIdsProps = {
   childrenIds: string[] | null | undefined;
   onChange: (val: EditorChildrenChange) => void;
 };
+/**
+ * EditorChildrenIds组件，用于管理和渲染给定编辑块内容，包含新增箭头
+ * @param {string[]} childrenIds - 子编辑块的标识数组
+ * @param {function} onChange - 当子编辑块变化时调用的回调函数
+ * @returns {React.ReactNode} - 渲染的子编辑块和其他UI元素
+ */
 export default function EditorChildrenIds({ childrenIds, onChange }: EditorChildrenIdsProps) {
   const appendBlock = (block: TEditorBlock) => {
     const blockId = generateId();
@@ -44,12 +50,13 @@ export default function EditorChildrenIds({ childrenIds, onChange }: EditorChild
     return <AddBlockButton placeholder onSelect={appendBlock} />;
   }
 
+  // 渲染每个子编辑块 及 它们之间的添加 新增按钮
   return (
     <>
       {childrenIds.map((childId, i) => (
         <Fragment key={childId}>
           <AddBlockButton onSelect={(block) => insertBlock(block, i)} />
-          <EditorBlock id={childId} />
+          <EditorBlock id={childId}  />
         </Fragment>
       ))}
       <AddBlockButton onSelect={appendBlock} />

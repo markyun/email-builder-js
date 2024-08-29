@@ -26,7 +26,7 @@ export default function FontSizeInput({ label, defaultValue, onChange }: Props) 
         units="px"
         step={1}
         min={10}
-        max={48}
+        max={60}
       />
     </Stack>
   );

@@ -16,6 +16,7 @@ export default function DividerSidebarPanel({ data, setData }: DividerSidebarPan
   const [, setErrors] = useState<Zod.ZodError | null>(null);
   const updateData = (d: unknown) => {
     const res = DividerPropsSchema.safeParse(d);
+    console.log("🚀 ~ Divider updateData ~ res:", res)
     if (res.success) {
       setData(res.data);
       setErrors(null);

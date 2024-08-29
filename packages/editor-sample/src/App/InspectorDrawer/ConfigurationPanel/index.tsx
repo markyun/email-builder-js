@@ -24,7 +24,7 @@ function renderMessage(val: string) {
     </Box>
   );
 }
-
+// 右侧属性修改
 export default function ConfigurationPanel() {
   const document = useDocument();
   const selectedBlockId = useSelectedBlockId();

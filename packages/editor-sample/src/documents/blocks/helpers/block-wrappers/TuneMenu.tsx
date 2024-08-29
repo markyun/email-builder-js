@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ArrowDownwardOutlined, ArrowUpwardOutlined, DeleteOutlined } from '@mui/icons-material';
+import { ArrowDownwardOutlined, ArrowUpwardOutlined, DeleteOutlined, CopyAll } from '@mui/icons-material';
 import { IconButton, Paper, Stack, SxProps, Tooltip } from '@mui/material';
 
 import { TEditorBlock } from '../../../editor/core';
@@ -22,6 +22,63 @@ type Props = {
 };
 export default function TuneMenu({ blockId }: Props) {
   const document = useDocument();
+  const generateNewId = (prefix = 'block') => `${prefix}-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+
+  const cloneBlockRecursively = (blockId, document, idMapping = {}) => {
+    const originalBlock = document[blockId];
+    const newBlockId = generateNewId(blockId.split('-')[0]);
+    idMapping[blockId] = newBlockId;
+
+    // Deep clone the block
+    const clonedBlock = JSON.parse(JSON.stringify(originalBlock));
+
+    // Update childrenIds and clone them recursively
+    const updateAndCloneChildrenIds = (childrenIds) => {
+      if (!childrenIds) return childrenIds;
+      return childrenIds.map(childId => {
+        if (!idMapping[childId]) {
+          const { newDocument, newMapping } = cloneBlockRecursively(childId, document, idMapping);
+          Object.assign(document, newDocument);
+          Object.assign(idMapping, newMapping);
+        }
+        return idMapping[childId];
+      });
+    };
+
+    // Clone childrenIds in data.props if they exist
+    if (clonedBlock.data?.props?.childrenIds) {
+      clonedBlock.data.props.childrenIds = updateAndCloneChildrenIds(clonedBlock.data.props.childrenIds);
+    }
+
+    // Clone columns' childrenIds if they exist
+    if (clonedBlock.data?.props?.columns) {
+      clonedBlock.data.props.columns = clonedBlock.data.props.columns.map(column => ({
+        ...column,
+        childrenIds: updateAndCloneChildrenIds(column.childrenIds),
+      }));
+    }
+
+    return {
+      newDocument: { ...document, [newBlockId]: clonedBlock },
+      newMapping: idMapping,
+      newBlockId,
+    };
+  };
+
+  const handleBlockDuplicateClick = () => {
+    const { newDocument, newBlockId } = cloneBlockRecursively(blockId, document);
+    newDocument['root'].data.childrenIds.push(newBlockId);
+    resetDocument(newDocument);
+  };
+
+  // const handleBlockDuplicateClick = () => {
+  //   const block = document[blockId] as TEditorBlock;
+  //   const newBlockId = `block-${Date.now()}`;
+  //   const blockCopy = Object.assign({}, block);
+  //   const nDocument = { ...document, [newBlockId]: blockCopy };
+  //   document['root'].data.childrenIds.push(newBlockId);
+  //   resetDocument(nDocument);
+  // };
 
   const handleDeleteClick = () => {
     const filterChildrenIds = (childrenIds: string[] | null | undefined) => {
@@ -159,6 +216,12 @@ export default function TuneMenu({ blockId }: Props) {
         <Tooltip title="Move down" placement="left-start">
           <IconButton onClick={() => handleMoveClick('down')} sx={{ color: 'text.primary' }}>
             <ArrowDownwardOutlined fontSize="small" />
+          </IconButton>
+        </Tooltip>
+        <hr style={{margin: '8px 0px',flexShrink: 0,border:' 0.6px solid rgba(0, 0, 0, 0.12)'}}></hr>
+        <Tooltip title="Duplicate" placement="left-start">
+          <IconButton sx={{ color: 'text.primary' }} onClick={handleBlockDuplicateClick}>
+            <CopyAll fontSize="small" />
           </IconButton>
         </Tooltip>
         <Tooltip title="Delete" placement="left-start">

@@ -24,10 +24,12 @@ const editorStateStore = create<TValue>(() => ({
   selectedScreenSize: 'desktop',
 
   inspectorDrawerOpen: true,
-  samplesDrawerOpen: true,
+  // 默认关闭左侧模板展示
+  samplesDrawerOpen: false,
 }));
 
 export function useDocument() {
+  // console.log("获取 useDocument", editorStateStore((s) => s.document));
   return editorStateStore((s) => s.document);
 }
 

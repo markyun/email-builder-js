@@ -1,14 +1,14 @@
 {
   "name": "@usewaypoint/block-divider",
-  "version": "0.0.5",
-  "description": "DIY @usewaypoint/document compatible Divider component",
+  "version": "0.0.6",
+  "description": "CEE @usewaypoint/document compatible Divider component",
   "main": "./dist/index.js",
-  "module": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "require": "./dist/index.js",
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/index.d.ts"
     }
   },
@@ -16,7 +16,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "npx tsc",
+    "bud": "npx tsc --project tsconfig.build.json",
+    "build": "vite build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "carlos@usewaypoint.com",
@@ -26,6 +27,8 @@
     "zod": "^1 || ^2 || ^3"
   },
   "devDependencies": {
-    "@testing-library/react": "^14.2.1"
+    "@testing-library/react": "^14.2.1",
+    "vite": "^5.4.2",
+    "vite-plugin-dts": "^4.0.3"
   }
 }

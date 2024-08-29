@@ -38,21 +38,23 @@ export default function App() {
     });
   }, []); // 空依赖数组确保这个 effect 只运行一次
 
+  console.log("Liquid 变量测试",templateOutput);
+
   return (
     <>
       {/* 左侧模板 */}
-      <InspectorDrawer />
-      {/* 右侧属性修改 */}
       <SamplesDrawer />
+      {/* 右侧属性修改 */}
+      <InspectorDrawer />
        {/* Editor Block */}
       <Stack
+        data-cee="模板编辑区"
         sx={{
           marginRight: inspectorDrawerOpen ? `${INSPECTOR_DRAWER_WIDTH}px` : 0,
           marginLeft: samplesDrawerOpen ? `${SAMPLES_DRAWER_WIDTH}px` : 0,
           transition: [marginLeftTransition, marginRightTransition].join(', '),
         }}
       >
-        {templateOutput}
         <TemplatePanel />
       </Stack>
     </>

@@ -15,6 +15,7 @@ type EmailLayoutSidebarFieldsProps = {
   data: EmailLayoutProps;
   setData: (v: EmailLayoutProps) => void;
 };
+//  修改右侧 EmailLayout 全局样式
 export default function EmailLayoutSidebarFields({ data, setData }: EmailLayoutSidebarFieldsProps) {
   const [, setErrors] = useState<Zod.ZodError | null>(null);
 

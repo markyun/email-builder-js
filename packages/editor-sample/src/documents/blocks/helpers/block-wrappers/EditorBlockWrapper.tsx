@@ -22,7 +22,7 @@ export default function EditorBlockWrapper({ children }: TEditorBlockWrapperProp
   } else if (mouseInside) {
     outline = '2px solid rgba(0,121,204, 0.3)';
   }
-
+//  编辑器菜单，上下移动，删除功能
   const renderMenu = () => {
     if (selectedBlockId !== blockId) {
       return null;

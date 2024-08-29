@@ -15,14 +15,19 @@ import ToggleInspectorPanelButton from '../InspectorDrawer/ToggleInspectorPanelB
 import ToggleSamplesPanelButton from '../SamplesDrawer/ToggleSamplesPanelButton';
 
 import DownloadJson from './DownloadJson';
+import SaveData from './SaveData';
+
 import HtmlPanel from './HtmlPanel';
 import ImportJson from './ImportJson';
 import JsonPanel from './JsonPanel';
 import MainTabsGroup from './MainTabsGroup';
 import ShareButton from './ShareButton';
 
+
+// 模板编辑区 核心组件
 export default function TemplatePanel() {
   const document = useDocument();
+  console.log("模板编辑区document ", document);
   const selectedMainTab = useSelectedMainTab();
   const selectedScreenSize = useSelectedScreenSize();
 
@@ -32,7 +37,7 @@ export default function TemplatePanel() {
   if (selectedScreenSize === 'mobile') {
     mainBoxSx = {
       ...mainBoxSx,
-      margin: '32px auto',
+      margin: '0px auto',
       width: 370,
       height: 800,
       boxShadow:
@@ -55,13 +60,14 @@ export default function TemplatePanel() {
     switch (selectedMainTab) {
       case 'editor':
         return (
-          <Box sx={mainBoxSx}>
+          <Box sx={mainBoxSx} data-cee="editor">
             <EditorBlock id="root" />
           </Box>
         );
       case 'preview':
         return (
-          <Box sx={mainBoxSx}>
+          <Box sx={mainBoxSx}  data-cee="preview">
+            {/* 渲染 EmailBuilder.js 的 json 配置成 html */}
             <Reader document={document} rootBlockId="root" />
           </Box>
         );
@@ -95,6 +101,7 @@ export default function TemplatePanel() {
             <MainTabsGroup />
           </Stack>
           <Stack direction="row" spacing={2}>
+            <SaveData />
             <DownloadJson />
             <ImportJson />
             <ToggleButtonGroup value={selectedScreenSize} exclusive size="small" onChange={handleScreenSizeChange}>
@@ -109,7 +116,7 @@ export default function TemplatePanel() {
                 </Tooltip>
               </ToggleButton>
             </ToggleButtonGroup>
-            <ShareButton />
+            {/* <ShareButton /> */}
           </Stack>
         </Stack>
         <ToggleInspectorPanelButton />

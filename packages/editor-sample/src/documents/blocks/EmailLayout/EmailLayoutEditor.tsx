@@ -37,6 +37,7 @@ export default function EmailLayoutEditor(props: EmailLayoutProps) {
 
   return (
     <div
+      data-cee="Email Layout Editor"
       onClick={() => {
         setSelectedBlockId(null);
       }}
@@ -59,7 +60,7 @@ export default function EmailLayoutEditor(props: EmailLayoutProps) {
         width="100%"
         style={{
           margin: '0 auto',
-          maxWidth: '600px',
+          maxWidth: '768px',
           backgroundColor: props.canvasColor ?? '#FFFFFF',
           borderRadius: props.borderRadius ?? undefined,
           border: (() => {

@@ -6,6 +6,7 @@ import { setSidebarTab, useInspectorDrawerOpen, useSelectedSidebarTab } from '..
 
 import ConfigurationPanel from './ConfigurationPanel';
 import StylesPanel from './StylesPanel';
+import DataPanel from './DataPanel';
 
 export const INSPECTOR_DRAWER_WIDTH = 320;
 
@@ -19,11 +20,14 @@ export default function InspectorDrawer() {
         return <ConfigurationPanel />;
       case 'styles':
         return <StylesPanel />;
+      case 'data':
+        return <DataPanel />;
     }
   };
 
   return (
     <Drawer
+      data-cee="右侧属性修改"
       variant="persistent"
       anchor="right"
       open={inspectorDrawerOpen}
@@ -36,6 +40,7 @@ export default function InspectorDrawer() {
           <Tabs value={selectedSidebarTab} onChange={(_, v) => setSidebarTab(v)}>
             <Tab value="styles" label="Styles" />
             <Tab value="block-configuration" label="Inspect" />
+            <Tab value="data" label="Data" />
           </Tabs>
         </Box>
       </Box>

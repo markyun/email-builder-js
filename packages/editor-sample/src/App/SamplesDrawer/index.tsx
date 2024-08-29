@@ -14,6 +14,7 @@ export default function SamplesDrawer() {
 
   return (
     <Drawer
+      data-cee="左侧模板template"
       variant="persistent"
       anchor="left"
       open={samplesDrawerOpen}
@@ -28,7 +29,7 @@ export default function SamplesDrawer() {
           </Typography>
 
           <Stack alignItems="flex-start">
-            <SidebarButton href="#">Empty</SidebarButton>
+            <SidebarButton href="#">Empty template</SidebarButton>
             <SidebarButton href="#sample/welcome">Welcome email</SidebarButton>
             <SidebarButton href="#sample/one-time-password">One-time passcode (OTP)</SidebarButton>
             <SidebarButton href="#sample/reset-password">Reset password</SidebarButton>

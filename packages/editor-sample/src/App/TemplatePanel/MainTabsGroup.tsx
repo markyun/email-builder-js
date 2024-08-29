@@ -30,14 +30,14 @@ export default function MainTabsGroup() {
           </Tooltip>
         }
       />
-      {/* <Tab
+      <Tab
         value="preview"
         label={
           <Tooltip title="Preview">
             <PreviewOutlined fontSize="small" />
           </Tooltip>
         }
-      /> */}
+      />
       <Tab
         value="html"
         label={

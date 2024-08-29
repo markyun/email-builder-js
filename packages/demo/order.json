@@ -1,0 +1,355 @@
+{
+    "data": {
+        "WaypointTemplate": {
+            "id": "wptemplate_49845dYS4w16QL67",
+            "name": "Untitled template",
+            "createdAt": "2024-08-29T06:44:40.197Z",
+            "updatedAt": "2024-08-29T06:44:40.197Z",
+            "lastPublishedAt": "2024-08-29T06:44:40.188Z",
+            "status": "PUBLISHED",
+            "type": "TEMPLATE",
+            "defaultPreviewVariables": {
+                "amount": 50,
+                "refund_id": "09234p29384",
+                "survey_url": "https://survey.com",
+                "display_name": "Jordan"
+            },
+            "testScenarios": [],
+            "activeConfiguration": {
+                "layoutId": null,
+                "subjectTemplate": "Refund approved",
+                "preheaderTemplate": "Your refund request of {{amount | currency}} has been approved.",
+                "senderVerifiedEmailAddressId": null,
+                "strictVariablesRendering": false,
+                "blocks": [
+                    {
+                        "id": "block_UDiAj2xSnjHFbSc7GnaxpS",
+                        "type": "Image",
+                        "props": {
+                            "waypointTemplateId": null,
+                            "url": "https://d1iiu589g39o6c.cloudfront.net/live/platforms/platform_A9wwKSL6EV6orh6f/images/wptemplateimage_jFUKa6pkjSdSga4B/Paymo-white.png",
+                            "alt": "",
+                            "linkHref": null,
+                            "uploadId": "wptemplateimage_jFUKa6pkjSdSga4B",
+                            "height": 18
+                        },
+                        "style": {
+                            "backgroundColor": "#141341",
+                            "backgroundColorTemplate": null,
+                            "border": null,
+                            "borderRadius": null,
+                            "color": null,
+                            "colorTemplate": null,
+                            "fontFamily": null,
+                            "fontSize": null,
+                            "fontWeight": null,
+                            "height": null,
+                            "margin": null,
+                            "maxHeight": null,
+                            "maxWidth": null,
+                            "minHeight": null,
+                            "minWidth": null,
+                            "padding": "24px 40px 24px 40px",
+                            "textAlign": "center",
+                            "textTransform": null,
+                            "width": null,
+                            "__typename": "CssStyle"
+                        },
+                        "sectionProps": {
+                            "hiddenCondition": null,
+                            "__typename": "BlockSectionProps"
+                        },
+                        "__typename": "TemplateBlock"
+                    },
+                    {
+                        "id": "block_8ncHbocK34jr1NMKWrgiWw",
+                        "type": "Image",
+                        "props": {
+                            "waypointTemplateId": null,
+                            "url": "https://d1iiu589g39o6c.cloudfront.net/live/platforms/platform_s7pH1ctvjV5zjwAF/images/wptemplateimage_WwfzyEG8F7KsKNaa/check.png",
+                            "alt": "",
+                            "linkHref": null,
+                            "uploadId": "wptemplateimage_WwfzyEG8F7KsKNaa"
+                        },
+                        "style": {
+                            "backgroundColor": null,
+                            "backgroundColorTemplate": null,
+                            "border": null,
+                            "borderRadius": null,
+                            "color": null,
+                            "colorTemplate": null,
+                            "fontFamily": null,
+                            "fontSize": null,
+                            "fontWeight": null,
+                            "height": null,
+                            "margin": null,
+                            "maxHeight": null,
+                            "maxWidth": null,
+                            "minHeight": null,
+                            "minWidth": null,
+                            "padding": "16px 24px 16px 24px",
+                            "textAlign": "center",
+                            "textTransform": null,
+                            "width": null,
+                            "__typename": "CssStyle"
+                        },
+                        "sectionProps": {
+                            "hiddenCondition": "",
+                            "__typename": "BlockSectionProps"
+                        },
+                        "__typename": "TemplateBlock"
+                    },
+                    {
+                        "id": "block_6spP8Trvs42h7Tbx7yPk8F",
+                        "type": "Heading",
+                        "props": {
+                            "level": "h2",
+                            "text": "Your {{amount | currency}} refund is on the way"
+                        },
+                        "style": {
+                            "backgroundColor": null,
+                            "backgroundColorTemplate": null,
+                            "border": null,
+                            "borderRadius": null,
+                            "color": "#ffffff",
+                            "colorTemplate": null,
+                            "fontFamily": "inherit",
+                            "fontSize": null,
+                            "fontWeight": "bold",
+                            "height": null,
+                            "margin": null,
+                            "maxHeight": null,
+                            "maxWidth": null,
+                            "minHeight": null,
+                            "minWidth": null,
+                            "padding": "16px 40px 16px 40px",
+                            "textAlign": "left",
+                            "textTransform": null,
+                            "width": null,
+                            "__typename": "CssStyle"
+                        },
+                        "sectionProps": {
+                            "hiddenCondition": null,
+                            "__typename": "BlockSectionProps"
+                        },
+                        "__typename": "TemplateBlock"
+                    },
+                    {
+                        "id": "block_XCfscxNNtSBCCcX17hGC56",
+                        "type": "Text",
+                        "props": {
+                            "text": "Hi {{display_name | default: 'there'}},\n\nYour refund request of **{{amount | currency}}** has been approved. You will receive it as soon as possible, between 3-5 days, depending on the bank transfer. \n\nWe would love it if you could answer a few questions on [our survey]({{survey_url}}). It will take you up to 5 minutes, and to reward you for your time, you will receive a discount code of 10% toward your next transaction with us. \n\nLet us know if we can further assist you. "
+                        },
+                        "style": {
+                            "backgroundColor": null,
+                            "backgroundColorTemplate": null,
+                            "border": null,
+                            "borderRadius": null,
+                            "color": null,
+                            "colorTemplate": null,
+                            "fontFamily": "inherit",
+                            "fontSize": "16px",
+                            "fontWeight": "normal",
+                            "height": null,
+                            "margin": null,
+                            "maxHeight": null,
+                            "maxWidth": null,
+                            "minHeight": null,
+                            "minWidth": null,
+                            "padding": "24px 40px 24px 40px",
+                            "textAlign": "left",
+                            "textTransform": null,
+                            "width": null,
+                            "__typename": "CssStyle"
+                        },
+                        "sectionProps": {
+                            "hiddenCondition": null,
+                            "__typename": "BlockSectionProps"
+                        },
+                        "__typename": "TemplateBlock"
+                    },
+                    {
+                        "id": "block_TesKGvorEt1fApVCWVZc8W",
+                        "type": "Button",
+                        "props": {
+                            "buttonBackgroundColor": null,
+                            "buttonStyle": "pill",
+                            "buttonTextColor": null,
+                            "fullWidth": false,
+                            "size": "large",
+                            "text": "View refund details",
+                            "url": "https://www.paytheory.com/transaction/{{refund_id}}"
+                        },
+                        "style": {
+                            "backgroundColor": null,
+                            "backgroundColorTemplate": null,
+                            "border": null,
+                            "borderRadius": null,
+                            "color": null,
+                            "colorTemplate": null,
+                            "fontFamily": "inherit",
+                            "fontSize": "16px",
+                            "fontWeight": "bold",
+                            "height": null,
+                            "margin": null,
+                            "maxHeight": null,
+                            "maxWidth": null,
+                            "minHeight": null,
+                            "minWidth": null,
+                            "padding": "32px 40px 32px 40px",
+                            "textAlign": "center",
+                            "textTransform": null,
+                            "width": null,
+                            "__typename": "CssStyle"
+                        },
+                        "sectionProps": {
+                            "hiddenCondition": null,
+                            "__typename": "BlockSectionProps"
+                        },
+                        "__typename": "TemplateBlock"
+                    },
+                    {
+                        "id": "block_8YvKA7EXrJaSCCP7yBJYiG",
+                        "type": "Image",
+                        "props": {
+                            "waypointTemplateId": null,
+                            "url": "https://d1iiu589g39o6c.cloudfront.net/live/platforms/platform_s7pH1ctvjV5zjwAF/images/wptemplateimage_b899H8CJNuoaRJbx/curve.png",
+                            "alt": "",
+                            "linkHref": null,
+                            "uploadId": "wptemplateimage_b899H8CJNuoaRJbx"
+                        },
+                        "style": {
+                            "backgroundColor": null,
+                            "backgroundColorTemplate": null,
+                            "border": null,
+                            "borderRadius": null,
+                            "color": null,
+                            "colorTemplate": null,
+                            "fontFamily": null,
+                            "fontSize": null,
+                            "fontWeight": null,
+                            "height": null,
+                            "margin": null,
+                            "maxHeight": null,
+                            "maxWidth": null,
+                            "minHeight": null,
+                            "minWidth": null,
+                            "padding": "0px 0px 0px 0px",
+                            "textAlign": "left",
+                            "textTransform": null,
+                            "width": null,
+                            "__typename": "CssStyle"
+                        },
+                        "sectionProps": {
+                            "hiddenCondition": null,
+                            "__typename": "BlockSectionProps"
+                        },
+                        "__typename": "TemplateBlock"
+                    },
+                    {
+                        "id": "block_EzXy4N83A2PSS7gvP6vkiS",
+                        "type": "Text",
+                        "props": {
+                            "text": "Transaction ID: {{refund_id}} – © PAYMO"
+                        },
+                        "style": {
+                            "backgroundColor": "#ffffff",
+                            "backgroundColorTemplate": null,
+                            "border": null,
+                            "borderRadius": null,
+                            "color": "#7c7c7c",
+                            "colorTemplate": null,
+                            "fontFamily": "inherit",
+                            "fontSize": "12px",
+                            "fontWeight": "normal",
+                            "height": null,
+                            "margin": null,
+                            "maxHeight": null,
+                            "maxWidth": null,
+                            "minHeight": null,
+                            "minWidth": null,
+                            "padding": "8px 24px 8px 24px",
+                            "textAlign": "center",
+                            "textTransform": null,
+                            "width": null,
+                            "__typename": "CssStyle"
+                        },
+                        "sectionProps": {
+                            "hiddenCondition": null,
+                            "__typename": "BlockSectionProps"
+                        },
+                        "__typename": "TemplateBlock"
+                    }
+                ],
+                "linkStyle": {
+                    "backgroundColor": null,
+                    "backgroundColorTemplate": null,
+                    "border": null,
+                    "borderRadius": null,
+                    "color": "#18c0ca",
+                    "colorTemplate": null,
+                    "fontFamily": null,
+                    "fontSize": null,
+                    "fontWeight": null,
+                    "height": null,
+                    "margin": null,
+                    "maxHeight": null,
+                    "maxWidth": null,
+                    "minHeight": null,
+                    "minWidth": null,
+                    "padding": null,
+                    "textAlign": null,
+                    "textTransform": null,
+                    "width": null,
+                    "__typename": "CssStyle"
+                },
+                "backdropStyle": {
+                    "backgroundColor": "#ffffff",
+                    "backgroundColorTemplate": null,
+                    "border": null,
+                    "borderRadius": null,
+                    "color": "#ffffff",
+                    "colorTemplate": null,
+                    "fontFamily": "Avenir, \"Avenir Next LT Pro\", Montserrat, Corbel, \"URW Gothic\", source-sans-pro, sans-serif",
+                    "fontSize": null,
+                    "fontWeight": null,
+                    "height": null,
+                    "margin": null,
+                    "maxHeight": null,
+                    "maxWidth": null,
+                    "minHeight": null,
+                    "minWidth": null,
+                    "padding": null,
+                    "textAlign": null,
+                    "textTransform": null,
+                    "width": null,
+                    "__typename": "CssStyle"
+                },
+                "canvasStyle": {
+                    "backgroundColor": "#141341",
+                    "backgroundColorTemplate": null,
+                    "border": null,
+                    "borderRadius": null,
+                    "color": null,
+                    "colorTemplate": null,
+                    "fontFamily": null,
+                    "fontSize": null,
+                    "fontWeight": null,
+                    "height": null,
+                    "margin": null,
+                    "maxHeight": null,
+                    "maxWidth": null,
+                    "minHeight": null,
+                    "minWidth": null,
+                    "padding": null,
+                    "textAlign": null,
+                    "textTransform": null,
+                    "width": null,
+                    "__typename": "CssStyle"
+                },
+                "__typename": "WaypointTemplateConfiguration"
+            },
+            "__typename": "WaypointTemplate"
+        }
+    }
+}

@@ -16,7 +16,6 @@ export default function DataPanel() {
   }
 
   return <>
-        <div>Test data</div>
         <DataSidebarPanel  />
-      </>;
+      </>
 }

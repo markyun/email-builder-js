@@ -24,31 +24,35 @@ export default function TextSidebarPanel({ data, setData }: TextSidebarPanelProp
       setErrors(res.error);
     }
   };
+  const  enableMarkdown = data?.props?.markdown || false;
+
   document.documentElement.setAttribute('data-color-mode', 'light')
 
   return (
     <BaseSidebarPanel title="Text block">
-      <TextInput
-        label="Content"
-        rows={5}
-        defaultValue={data.props?.text ?? ''}
-        onChange={(text) => updateData({ ...data, props: { ...data.props, text } })}
-      />
-      <div>
-        <p style={{margin:' 0 0 10px 0 '}}>Content</p>
-        <MarkdownEditor
-          value={data.props?.text ?? ''}
-          height="200px"
-          enablePreview={false}
-          data-color-mode="light"
-          onChange={(value, viewUpdate) => {
-            console.log("value",value);
-            const text = value;
-            updateData({ ...data, props: { ...data.props, text } });
-          }}
-        />
-      </div>
-
+      {
+        !enableMarkdown ?
+        (<TextInput
+          label="Content"
+          rows={5}
+          defaultValue={data.props?.text ?? ''}
+          onChange={(text) => updateData({ ...data, props: { ...data.props, text } })}
+        />) : (
+          <div>
+            <p style={{ margin: ' 0 0 5px 0 ',fontSize:'14px' }}>Content</p>
+            <MarkdownEditor
+              value={data.props?.text ?? ''}
+              height="200px"
+              enablePreview={false}
+              data-color-mode="light"
+              onChange={(value, viewUpdate) => {
+                const text = value;
+                updateData({ ...data, props: { ...data.props, text } });
+              }}
+            />
+          </div>
+        )
+      }
       <div style={{color:'#1F1F21',marginTop:'10px'}}>GitHub Flavored Markdown and Liquid templating supported.</div>
       <BooleanInput
         label="Markdown"

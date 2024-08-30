@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Box, Stack, Typography } from '@mui/material';
 
 import CodeMirror from '@uiw/react-codemirror';
@@ -16,7 +16,7 @@ export default function DataSidebarPanel({ data = null, setData = null}) {
   }
 
   console.log("DataSidebarPanel init");
-  // JSON 格式的初始数据
+
   const initialJson = `{
     "amount": 50,
     "refund_id": "09234p29384",
@@ -25,8 +25,7 @@ export default function DataSidebarPanel({ data = null, setData = null}) {
   }`;
 
   const [value, setValue] = useState(initialJson);
-  const onChange = React.useCallback((val, viewUpdate) => {
-    console.log('val:', val);
+  const onChange = useCallback((val, viewUpdate) => {
     setValue(val);
   }, []);
 

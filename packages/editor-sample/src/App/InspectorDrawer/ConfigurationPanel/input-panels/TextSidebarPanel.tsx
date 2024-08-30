@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { TextProps, TextPropsSchema } from '@usewaypoint/block-text';
+import MarkdownEditor from '@uiw/react-markdown-editor';
 
 import BaseSidebarPanel from './helpers/BaseSidebarPanel';
 import BooleanInput from './helpers/inputs/BooleanInput';
@@ -23,6 +24,7 @@ export default function TextSidebarPanel({ data, setData }: TextSidebarPanelProp
       setErrors(res.error);
     }
   };
+  document.documentElement.setAttribute('data-color-mode', 'light')
 
   return (
     <BaseSidebarPanel title="Text block">
@@ -32,7 +34,22 @@ export default function TextSidebarPanel({ data, setData }: TextSidebarPanelProp
         defaultValue={data.props?.text ?? ''}
         onChange={(text) => updateData({ ...data, props: { ...data.props, text } })}
       />
-      <div className='text-sm text-gray-500'>GitHub Flavored Markdown and Liquid templating supported.</div>
+      <div>
+        <p style={{margin:' 0 0 10px 0 '}}>Content</p>
+        <MarkdownEditor
+          value={data.props?.text ?? ''}
+          height="200px"
+          enablePreview={false}
+          data-color-mode="light"
+          onChange={(value, viewUpdate) => {
+            console.log("value",value);
+            const text = value;
+            updateData({ ...data, props: { ...data.props, text } });
+          }}
+        />
+      </div>
+
+      <div style={{color:'#1F1F21',marginTop:'10px'}}>GitHub Flavored Markdown and Liquid templating supported.</div>
       <BooleanInput
         label="Markdown"
         defaultValue={data.props?.markdown ?? false}

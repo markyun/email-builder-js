@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
+import { Box, Stack, Typography } from '@mui/material';
 
+import CodeMirror from '@uiw/react-codemirror';
+import { javascript } from '@codemirror/lang-javascript';
 
-import { Controlled as CodeMirror } from 'react-codemirror2';
-import 'codemirror/lib/codemirror.css';
-import 'codemirror/mode/javascript/javascript';
-
-
+import { useDocument } from '../../../../documents/editor/EditorContext';
 import BaseSidebarPanel from './helpers/BaseSidebarPanel';
-import BooleanInput from './helpers/inputs/BooleanInput';
-import TextInput from './helpers/inputs/TextInput';
-import MultiStylePropertyPanel from './helpers/style-inputs/MultiStylePropertyPanel';
-export default function TextSidebarPanel({ data = null, setData = null}) {
+import './cee-codemirror2.css'; // 引入你自定义的 CSS 文件
 
+export default function DataSidebarPanel({ data = null, setData = null}) {
+
+  const block = useDocument().root;
+  if (!block) {
+    return <p>Block not found</p>;
+  }
+
+  console.log("DataSidebarPanel init");
   // JSON 格式的初始数据
   const initialJson = `{
     "amount": 50,
@@ -20,7 +24,13 @@ export default function TextSidebarPanel({ data = null, setData = null}) {
     "display_name": "markyun"
   }`;
 
-  const [code, setCode] = useState(initialJson);
+  const [value, setValue] = useState(initialJson);
+  const onChange = React.useCallback((val, viewUpdate) => {
+    console.log('val:', val);
+    setValue(val);
+  }, []);
+
+
   const [, setErrors] = useState<Zod.ZodError | null>(null);
 
   const updateData = (d: unknown) => {
@@ -32,32 +42,13 @@ export default function TextSidebarPanel({ data = null, setData = null}) {
     }
   };
   return (
-    <BaseSidebarPanel title="Variables Data ">
-        <p style={{color:'#1F1F21', margin:'0'}}>Mimic the JSON data that your application will pass to this template. Eg: <br/><code>{ "{ \"displayName\": \"Joe\" }" }</code>.</p>
-        <p style={{color:'#1F1F21',marginTop:'10px'}}> Output variables on your template using Liquid syntax. Eg: <br/> <code>{"{{ displayName }}"}</code>.</p>
+    <BaseSidebarPanel title="Variables Data">
+        <p style={{color:'#1F1F21', margin:'0'}}>Mimic the JSON data that your application will pass to this template. <br/>Eg: <code>{ "{ \"displayName\": \"Joe\" }" }</code>.</p>
+        <p style={{color:'#1F1F21',marginTop:'10px'}}> Output variables on your template using Liquid syntax. <br/>  Eg:<code>{"{{ displayName }}"}</code>.</p>
 
-        <CodeMirror
-        value={code}
-        options={{
-          mode: { name: "javascript", json: true },
-          theme: "default",
-          lineNumbers: true,
-        }}
-        onBeforeChange={(editor, data, value) => {
-          setCode(value);
-        }}
-        onChange={(editor, data, value) => {
-          console.log('Controlled:', value);
-          updateData(value);
-        }}
-      />
-
-      {/* <TextInput
-        label="Content"
-        rows={5}
-        defaultValue={''}
-        onChange={(text) => updateData({ ...data, props: { ...data?.props, text } })}
-      /> */}
+        <div className='cee-codemirror2'>
+          <CodeMirror value={value} height="300px" placeholder='Variables Data' extensions={[javascript({ jsx: true })]} onChange={onChange} />
+        </div>
 
     </BaseSidebarPanel>
   );

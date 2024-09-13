@@ -1,7 +1,7 @@
 /* 自定义 CodeMirror 容器样式 */
 .cee-codemirror2 {
   width: 100%;
-  max-width: 310px;
+  max-width: 410px;
   max-height: 360px;
 }
 .cee-codemirror2 .CodeMirror.cm-s-default {
@@ -13,7 +13,7 @@
 /* 自定义 CodeMirror 内部滚动样式 */
 .cee-codemirror2  .CodeMirror {
     width: 100%;
-    max-width: 310px;
+    max-width: 410px;
     min-height: 218px !important;
-    max-height: 320px !important;
+    max-height: 340px !important;
 }

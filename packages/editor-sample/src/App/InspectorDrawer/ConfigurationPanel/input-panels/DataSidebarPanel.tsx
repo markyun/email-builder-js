@@ -44,9 +44,8 @@ export default function DataSidebarPanel({ data = null, setData = null}) {
     <BaseSidebarPanel title="Variables Data">
         <p style={{color:'#1F1F21', margin:'0'}}>Mimic the JSON data that your application will pass to this template. <br/>Eg: <code>{ "{ \"displayName\": \"Joe\" }" }</code>.</p>
         <p style={{color:'#1F1F21',marginTop:'10px'}}> Output variables on your template using Liquid syntax. <br/>  Eg:<code>{"{{ displayName }}"}</code>.</p>
-
         <div className='cee-codemirror2'>
-          <CodeMirror value={value} height="300px" placeholder='Variables Data' extensions={[javascript({ jsx: true })]} onChange={onChange} />
+          <CodeMirror value={value} height="380px" placeholder='Variables Data' extensions={[javascript({ jsx: true })]} onChange={onChange} />
         </div>
 
     </BaseSidebarPanel>

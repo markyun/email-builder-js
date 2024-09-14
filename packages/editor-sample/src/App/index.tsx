@@ -31,8 +31,8 @@ export default function App() {
       cache: process.env.NODE_ENV === 'production'
     });
 
-    const data = { name: 'Ma.jinyun', test: 'test11' };
-    const template = `Hello, {{ name }} + {{ test }}!`;
+    const data = { name: 'Ma.jinyun', test: 'test22' };
+    const template = `Hello, {{ name }}  + {{ test }} {{ template }}!`;
     engine.parseAndRender(template, data).then(rendered => {
       setTemplateOutput(rendered);
     });

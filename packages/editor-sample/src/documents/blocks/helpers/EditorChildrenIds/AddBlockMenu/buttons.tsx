@@ -28,7 +28,7 @@ export const BUTTONS: TButtonProps[] = [
     block: () => ({
       type: 'Heading',
       data: {
-        props: { text: 'Hello friend' },
+        props: { text: 'Heading' },
         style: {
           padding: { top: 16, bottom: 16, left: 24, right: 24 },
         },
@@ -41,7 +41,7 @@ export const BUTTONS: TButtonProps[] = [
     block: () => ({
       type: 'Text',
       data: {
-        props: { text: 'My new text block', markdown: true },
+        props: { text: '### New text block, markdown supported.', markdown: true },
         style: {
           padding: { top: 16, bottom: 16, left: 24, right: 24 },
           fontWeight: 'normal',
@@ -71,8 +71,8 @@ export const BUTTONS: TButtonProps[] = [
       type: 'Image',
       data: {
         props: {
-          url: 'https://assets.usewaypoint.com/sample-image.jpg',
-          alt: 'Sample product',
+          url: 'https://cover.sli.dev/',
+          alt: 'Sample background',
           contentAlignment: 'middle',
           linkHref: null,
         },
@@ -121,7 +121,7 @@ export const BUTTONS: TButtonProps[] = [
     block: () => ({
       type: 'Html',
       data: {
-        props: { contents: '<strong>Hello world</strong>' },
+        props: { contents: '<strong>Html Code</strong>' },
         style: {
           fontSize: 16,
           textAlign: null,

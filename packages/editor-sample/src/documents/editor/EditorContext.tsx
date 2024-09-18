@@ -25,7 +25,7 @@ const editorStateStore = create<TValue>(() => ({
 
   inspectorDrawerOpen: true,
   // 默认关闭左侧模板展示
-  samplesDrawerOpen: false,
+  samplesDrawerOpen: true,
 }));
 
 export function useDocument() {

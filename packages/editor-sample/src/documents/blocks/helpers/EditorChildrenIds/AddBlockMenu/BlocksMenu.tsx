@@ -14,6 +14,7 @@ type BlocksMenuProps = {
   onSelect: (block: TEditorBlock) => void;
 };
 
+//  新增 基本组件下拉
 export default function BlocksMenu({ anchorEl, setAnchorEl, onSelect }: BlocksMenuProps) {
   const onClose = () => {
     setAnchorEl(null);

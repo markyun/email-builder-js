@@ -20,6 +20,8 @@ const sx: SxProps = {
 type Props = {
   blockId: string;
 };
+
+// 左侧 浮动按钮，上下移动 删除 ，copy
 export default function TuneMenu({ blockId }: Props) {
   const document = useDocument();
   const generateNewId = (prefix = 'block') => `${prefix}-${Date.now()}-${Math.floor(Math.random() * 1000)}`;

@@ -713,6 +713,7 @@ const MacroTabs = (props) => {
         vertical: "top",
         horizontal: "right"
       }}
+      rootMenu={'macroSelect'}
       menuItems={finalData||[]}
       onClose={handleClose}
       onClick={handle}

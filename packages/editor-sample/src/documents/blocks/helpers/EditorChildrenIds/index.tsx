@@ -59,6 +59,7 @@ export default function EditorChildrenIds({ childrenIds, onChange }: EditorChild
           <EditorBlock id={childId}  />
         </Fragment>
       ))}
+      {/* 新增组件的 icon按钮 */}
       <AddBlockButton onSelect={appendBlock} />
     </>
   );

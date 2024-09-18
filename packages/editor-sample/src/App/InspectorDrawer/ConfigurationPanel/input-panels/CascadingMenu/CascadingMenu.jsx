@@ -1,7 +1,7 @@
 import React from 'react';
 import { Menu, MenuItem, MenuList, Paper } from '@mui/material';
 import { withStyles } from '@mui/styles';
-import { LastPageOutlined } from '@mui/icons-material';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 import styles from "./CascadingMenu.styles";
 
@@ -79,10 +79,11 @@ class CascadingMenu extends React.Component {
         className={classes.menuItem}
         key={menuItem.key}
       >
-        <div className={classes.caption}>{menuItem.caption}</div>
+        {!hasSubMenu && (<div className={classes.caption}>{menuItem.caption}</div>)}
+        {hasSubMenu && (<div className={classes.caption}>{menuItem.caption} <KeyboardArrowRightIcon fontSize="small" /></div>)}
         {hasSubMenu && (
           <React.Fragment>
-            <LastPageOutlined className={classes.arrowIcon} />
+
             <Paper
               className={`${classes.subMenu} ${
                 subMenuState.open ? classes.subMenuOpen : ""

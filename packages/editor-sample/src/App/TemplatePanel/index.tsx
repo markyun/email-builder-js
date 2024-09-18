@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { MonitorOutlined, PhoneIphoneOutlined } from '@mui/icons-material';
-import { Box, Stack, SxProps, ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material';
+import { Box, Stack, SxProps, ToggleButton, ToggleButtonGroup, Tooltip, Button } from '@mui/material';
 import { Reader } from '@usewaypoint/email-builder';
 
 import EditorBlock from '../../documents/editor/EditorBlock';

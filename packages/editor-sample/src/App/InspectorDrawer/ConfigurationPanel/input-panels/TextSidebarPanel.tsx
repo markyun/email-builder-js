@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { MenuItem, TextField, IconButton, } from '@mui/material';
 import { TextProps, TextPropsSchema } from '@usewaypoint/block-text';
 import MarkdownEditor from '@uiw/react-markdown-editor';
+import request from '../../../../utils/commonRequest';
 
 import BaseSidebarPanel from './helpers/BaseSidebarPanel';
 import BooleanInput from './helpers/inputs/BooleanInput';
@@ -634,12 +635,31 @@ const MacroSelect = (props) => {
 };
 
 
+
+
 // 插入宏和变量
 const MacroTabs = (props) => {
   const [anchorElement, setAnchorElement] = useState(null);
 
   const { editor } = props?.editorProps;
   const { state, view } = editor?.current || {};
+
+
+  async function getMockList  (params) {
+    return request(
+      'http://rap2api.taobao.org/app/mock/302802/pageList/getProjectSchema',
+      {
+        method: 'GET',
+        data: params,
+        headers: {
+          Token: 'Token',
+        },
+      },
+    );
+  }
+
+  const data = getMockList('test');
+  console.log("🚀 ~ getMockList ~ data:", data);
 
   const groupedData = (menuItem || []).reduce((acc, item) => {
     if (!acc[item.useScope]) {
@@ -668,7 +688,7 @@ const MacroTabs = (props) => {
       onClick: subItem.onClick
     }))
   }));
-  console.log(groupedData,finalData);
+  console.log(groupedData, finalData);
 
   const handle = (v) => {
     console.log("v", v);
@@ -714,7 +734,7 @@ const MacroTabs = (props) => {
         horizontal: "right"
       }}
       rootMenu={'macroSelect'}
-      menuItems={finalData||[]}
+      menuItems={finalData || []}
       onClose={handleClose}
       onClick={handle}
       open={Boolean(anchorElement)}
@@ -822,7 +842,7 @@ export default function TextSidebarPanel({ data, setData }: TextSidebarPanelProp
             </div>
           )
       }
-      <div style={{ color: '#1F1F21', marginTop: '10px' }} title='GitHub Flavored Markdown and Liquid templating supported' >GitHub Flavored Markdown and Liquid templating supported.</div>
+      <div style={{ color: '#1F1F21', marginTop: '10px', marginBottom: '-26px' }} title='GitHub Flavored Markdown and Liquid templating supported' >GitHub Flavored Markdown and Liquid templating supported.</div>
       <BooleanInput
         label="Markdown"
         defaultValue={data.props?.markdown}

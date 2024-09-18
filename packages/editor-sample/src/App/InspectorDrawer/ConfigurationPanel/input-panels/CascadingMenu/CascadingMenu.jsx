@@ -22,6 +22,7 @@ class CascadingMenu extends React.Component {
     );
     if (!hasSubMenu) {
       this.props.onClick(menuItem?.caption);
+      this.props.onClose();
       return;
     }
 

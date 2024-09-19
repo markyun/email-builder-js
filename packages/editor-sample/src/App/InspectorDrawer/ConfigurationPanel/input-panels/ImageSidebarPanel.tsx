@@ -33,8 +33,20 @@ export default function ImageSidebarPanel({ data, setData }: ImageSidebarPanelPr
 
   return (
     <BaseSidebarPanel title="Image block">
+
+      <RadioGroupInput
+        label="Image source"
+        defaultValue={data.props?.columnsCount === 2 ? '2' : '3'}
+        onChange={(v) => {
+          updateData({ ...data, props: { ...data.props, columnsCount: v === '2' ? 2 : 3 } });
+        }}
+      >
+        <ToggleButton value="Upload">Upload</ToggleButton>
+        <ToggleButton value="URL">URL</ToggleButton>
+      </RadioGroupInput>
+
       <TextInput
-        label="Source URL"
+        label="Image URL"
         defaultValue={data.props?.url ?? ''}
         onChange={(v) => {
           const url = v.trim().length === 0 ? null : v.trim();

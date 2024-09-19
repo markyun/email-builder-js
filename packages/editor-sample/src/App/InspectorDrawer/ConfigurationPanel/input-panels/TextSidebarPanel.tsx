@@ -16,8 +16,14 @@ type TextSidebarPanelProps = {
   setData: (v: TextProps) => void;
 };
 
-const menuItem = [
+let menuItem = [
   {
+    "paramType": "M",
+    "macroId": 1,
+    "useScope": "local",
+    "macroScriptId": 1,
+    "hasParam": null,
+  }, {
     "paramType": "M",
     "macroId": 1,
     "useScope": "MCCM",
@@ -633,9 +639,31 @@ const MacroSelect = (props) => {
   </>
   );
 };
+// 查询宏变量
+async function qryMacroList(params):Promise {
+  try {
+    const response = await request(
+      '/ceg/AdviceMacroController/qryMacroList',
+      {
+        method: 'post',
+        data: params,
+        headers: {
+          // 'x-csrf-token': '286bd941-a1e4-462b-a5fc-95b733c40f77',
+        },
+      },
+    );
+    if (response) {
+     return response;
+    }
+  } catch (error) {
+  }
+}
 
-
-
+qryMacroList('test').then( (data) => {
+  if (data?.svcCont?.data) {
+   menuItem = data?.svcCont?.data;
+  }
+});
 
 // 插入宏和变量
 const MacroTabs = (props) => {
@@ -643,23 +671,6 @@ const MacroTabs = (props) => {
 
   const { editor } = props?.editorProps;
   const { state, view } = editor?.current || {};
-
-
-  async function getMockList  (params) {
-    return request(
-      'http://rap2api.taobao.org/app/mock/302802/pageList/getProjectSchema',
-      {
-        method: 'GET',
-        data: params,
-        headers: {
-          Token: 'Token',
-        },
-      },
-    );
-  }
-
-  const data = getMockList('test');
-  console.log("🚀 ~ getMockList ~ data:", data);
 
   const groupedData = (menuItem || []).reduce((acc, item) => {
     if (!acc[item.useScope]) {
@@ -733,7 +744,7 @@ const MacroTabs = (props) => {
         vertical: "top",
         horizontal: "right"
       }}
-      rootMenu={'macroSelect'}
+      rootmenu={'macroSelect'}
       menuItems={finalData || []}
       onClose={handleClose}
       onClick={handle}

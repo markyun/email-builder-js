@@ -9,10 +9,10 @@ const instance = axios.create({
 // 请求拦截器
 instance.interceptors.response.use(
   // eslint-disable-next-line no-unused-vars
-  response => {
-    // cancelPending(response);
-    // updateRequestToken(response);
-    // return response;
+ response => {
+    // 2xx 范围内的状态码都会触发该函数。
+    // 对响应数据做点什么
+    return response;
   },
   error => {
     if (error.name === 'CanceledError') {
@@ -97,23 +97,18 @@ function processOptions(option) {
 }
 
 const request = async (url, option, isThrowError = true) => {
-  const newUrl = '';
-
-  const response = await instance(newUrl, processOptions(option, isThrowError));
+  const response = await instance(url, processOptions(option, isThrowError));
   if (!response) {
     return {};
-  }
-
-  if (instance.isCancel(response)) {
-    return { cancelError: 'CanceledError' };
   }
   const { status, data, resultMsg, message } = response || {};
   if (`${status}` === '200') {
     return data;
   }
-  IMessage.error(resultMsg || message);
-
-  return {};
+  // IMessage.error(resultMsg || message);
+  return response;
 };
 
-export default { request };
+// export const request2 = instance;
+
+export default request;

@@ -120,7 +120,7 @@ class CascadingMenu extends React.Component {
         anchorEl={anchorElement}
         elevation={2}
         classes={{
-          paper: classes.rootMenu
+          paper: classes.rootmenu
         }}
         open={open}
         onClose={() => this.closeAllMenus()}

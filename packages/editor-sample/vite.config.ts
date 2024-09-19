@@ -33,5 +33,16 @@ export default defineConfig({
         },
       },
     }
+  },
+  server: {
+    proxy: {
+      // 代理所有 /ceg 开头的请求到
+      '/ceg': {
+        // target: process.env.TAOBAO_API_BASE_URL,
+        target: 'http://rap2api.taobao.org/app/mock/320728',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/ceg/, '__')
+      }
+    }
   }
 });

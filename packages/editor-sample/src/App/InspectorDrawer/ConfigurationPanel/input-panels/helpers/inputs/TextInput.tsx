@@ -4,6 +4,7 @@ import { InputProps, TextField } from '@mui/material';
 
 type Props = {
   label: string;
+  style: string;
   rows?: number;
   placeholder?: string;
   helperText?: string | JSX.Element;
@@ -11,12 +12,13 @@ type Props = {
   defaultValue: string;
   onChange: (v: string) => void;
 };
-export default function TextInput({ helperText, label, placeholder, rows, InputProps, defaultValue, onChange }: Props) {
+export default function TextInput({ helperText, label, style, placeholder, rows, InputProps, defaultValue, onChange }: Props) {
   const [value, setValue] = useState(defaultValue);
   const isMultiline = typeof rows === 'number' && rows > 1;
   return (
     <TextField
       fullWidth
+      sx={style}
       multiline={isMultiline}
       minRows={rows}
       variant={isMultiline ? 'outlined' : 'standard'}

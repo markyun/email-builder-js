@@ -31,13 +31,14 @@ export default function getConfiguration(template: string) {
     }
   }
 
+  //   这种方式传入模版 URL+base64 ： /email-builder/#code/ewogICJyb290IjogewogICAgInR5cGU
   if (template.startsWith('#code/')) {
-    const encodedString = template.replace('#code/', '');
-    const configurationString = decodeURIComponent(atob(encodedString));
     try {
+      const encodedString = template.replace('#code/', '');
+      const configurationString = decodeURIComponent(atob((encodedString)));
       return JSON.parse(configurationString);
     } catch {
-      console.error(`Couldn't load configuration from hash.`);
+      console.error(`Couldn't load configuration from #code/{base64}.`);
     }
   }
 

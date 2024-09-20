@@ -7,6 +7,7 @@ import getConfiguration from '../../getConfiguration';
 
 export default function SidebarButton({ href, children }: { href: string; children: JSX.Element | string }) {
   const handleClick = () => {
+    // 获取当前所选模版内容
     resetDocument(getConfiguration(href));
   };
   return (

@@ -5,9 +5,12 @@ import {
   VerticalAlignCenterOutlined,
   VerticalAlignTopOutlined,
 } from '@mui/icons-material';
-import { Stack, ToggleButton } from '@mui/material';
+import { Box, Stack, Button, ToggleButton } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { ImageProps, ImagePropsSchema } from '@usewaypoint/block-image';
 
+import request from '../../../../utils/commonRequest';
 import BaseSidebarPanel from './helpers/BaseSidebarPanel';
 import RadioGroupInput from './helpers/inputs/RadioGroupInput';
 import TextDimensionInput from './helpers/inputs/TextDimensionInput';
@@ -18,8 +21,22 @@ type ImageSidebarPanelProps = {
   data: ImageProps;
   setData: (v: ImageProps) => void;
 };
+
+const VisuallyHiddenInput = styled('input')({
+  clip: 'rect(0 0 0 0)',
+  clipPath: 'inset(50%)',
+  height: 1,
+  overflow: 'hidden',
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  whiteSpace: 'nowrap',
+  width: 1,
+});
+
 export default function ImageSidebarPanel({ data, setData }: ImageSidebarPanelProps) {
   const [, setErrors] = useState<Zod.ZodError | null>(null);
+  const [imageType, setImageType] = useState('URL');
 
   const updateData = (d: unknown) => {
     const res = ImagePropsSchema.safeParse(d);
@@ -31,28 +48,72 @@ export default function ImageSidebarPanel({ data, setData }: ImageSidebarPanelPr
     }
   };
 
+
   return (
     <BaseSidebarPanel title="Image block">
+      <Box sx={{ 'font-size': '13px' }}>Image source</Box>
+      <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.12)', padding: '14px 8px', marginTop: '10px!important', minHeight: '160px' }}>
+        <RadioGroupInput
+          label=""
+          defaultValue={imageType}
+          onChange={(v) => {
+            setImageType(v);
+          }}
+        >
+          <ToggleButton value="URL">URL</ToggleButton>
+          <ToggleButton value="Upload">Upload</ToggleButton>
+        </RadioGroupInput>
+        {imageType === 'URL' && (
+          <TextInput
+            label="Image URL"
+            style={{ marginTop: '14px' }}
+            defaultValue={data.props?.url ?? ''}
+            onChange={(v) => {
+              const url = v.trim().length === 0 ? null : v.trim();
+              updateData({ ...data, props: { ...data.props, url } });
+            }}
+          />)}
+        {imageType === 'Upload' && (
+          <Box sx={{ textAlign: 'center', margin: '30px 0' }}>
+            <Button
+              component="label"
+              role={undefined}
+              variant="contained"
+              tabIndex={-1}
+              startIcon={<CloudUploadIcon />}
+            >
+              Upload files
+              <VisuallyHiddenInput
+                type="file"
+                accept='.jpeg,.jpg,.png,.gif'
+                onChange={(event) => {
+                  console.log(event.target.files)
 
-      <RadioGroupInput
-        label="Image source"
-        defaultValue={data.props?.columnsCount === 2 ? '2' : '3'}
-        onChange={(v) => {
-          updateData({ ...data, props: { ...data.props, columnsCount: v === '2' ? 2 : 3 } });
-        }}
-      >
-        <ToggleButton value="Upload">Upload</ToggleButton>
-        <ToggleButton value="URL">URL</ToggleButton>
-      </RadioGroupInput>
+                  const formData = new FormData();
+                  formData.append('file', event.target.files);
+                  request('/ceg/UploadImageController/saveImageFile', {
+                    method: 'post',
+                    data: formData,
+                    headers: {
+                      'Content-Type': 'multipart/form-data',
+                    },
+                  })
+                    .then(response => {
+                      // 处理响应
+                      console.log('文件上传成功', response);
+                    })
+                    .catch(error => {
+                      // 处理错误
+                      console.error('文件上传失败', error);
+                    });
 
-      <TextInput
-        label="Image URL"
-        defaultValue={data.props?.url ?? ''}
-        onChange={(v) => {
-          const url = v.trim().length === 0 ? null : v.trim();
-          updateData({ ...data, props: { ...data.props, url } });
-        }}
-      />
+                }}
+              // multiple
+              />
+            </Button>
+          </Box>
+        )}
+      </Box>
 
       <TextInput
         label="Alt text"

@@ -28,6 +28,10 @@ import ShareButton from './ShareButton';
 export default function TemplatePanel() {
   const document = useDocument();
   console.log("模板编辑区document ", document);
+
+  // 可以设置当前页面JSON内容
+  // resetDocument(getConfiguration(href));
+
   const selectedMainTab = useSelectedMainTab();
   const selectedScreenSize = useSelectedScreenSize();
 

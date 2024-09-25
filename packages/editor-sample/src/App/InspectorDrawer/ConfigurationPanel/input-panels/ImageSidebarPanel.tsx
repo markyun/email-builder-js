@@ -10,7 +10,7 @@ import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { ImageProps, ImagePropsSchema } from '@usewaypoint/block-image';
 
-import request from '../../../../utils/commonRequest';
+import request, {getAccessibleAddress} from '../../../../utils/commonRequest';
 import BaseSidebarPanel from './helpers/BaseSidebarPanel';
 import RadioGroupInput from './helpers/inputs/RadioGroupInput';
 import TextDimensionInput from './helpers/inputs/TextDimensionInput';
@@ -37,6 +37,7 @@ const VisuallyHiddenInput = styled('input')({
 export default function ImageSidebarPanel({ data, setData }: ImageSidebarPanelProps) {
   const [, setErrors] = useState<Zod.ZodError | null>(null);
   const [imageType, setImageType] = useState('URL');
+
 
   const updateData = (d: unknown) => {
     const res = ImagePropsSchema.safeParse(d);
@@ -88,10 +89,10 @@ export default function ImageSidebarPanel({ data, setData }: ImageSidebarPanelPr
                 accept='.jpeg,.jpg,.png,.gif'
                 onChange={(event) => {
                   console.log(event.target.files)
-
                   const formData = new FormData();
-                  formData.append('file', event.target.files);
+                  formData.append('file', event?.target?.files?.[0]);
                   request('/ceg/UploadImageController/saveImageFile', {
+                  // request('/rap2api/ceg/UploadImageController/saveImageFile', {
                     method: 'post',
                     data: formData,
                     headers: {
@@ -100,13 +101,17 @@ export default function ImageSidebarPanel({ data, setData }: ImageSidebarPanelPr
                   })
                     .then(response => {
                       // 处理响应
-                      console.log('文件上传成功', response);
+                      console.log('ImageFile 上传成功', response);
+                      const ImgUrl = response?.fileLocation;
+                      if(ImgUrl){
+                        const url = getAccessibleAddress(ImgUrl);
+                        updateData({ ...data, props: { ...data.props, url } });
+                      }
                     })
                     .catch(error => {
                       // 处理错误
                       console.error('文件上传失败', error);
                     });
-
                 }}
               // multiple
               />

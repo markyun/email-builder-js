@@ -1,0 +1,10 @@
+#!/bin/bash
+
+APP=("svr")
+
+svr=(
+     "/usr/tomcat/tomcat8.0/webserver/bin/startup.sh"
+     "catalina"
+     "echo $(netstat -lnpt|grep -c -w 8080)"
+     "1"
+    )

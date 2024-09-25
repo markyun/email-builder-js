@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 import { visualizer } from 'rollup-plugin-visualizer'
 
 export default defineConfig({
-  plugins: [react(),visualizer({open: true})],
+  plugins: [react(), visualizer({ open: true })],
   base: '/email-builder/',
   dedupe: [],
   mode: 'production', // 生产模式
@@ -15,7 +15,7 @@ export default defineConfig({
     // 关闭压缩
     minify: false,
     assetsDir: 'assets', // 默认 assets
-    chunkSizeWarningLimit: 500, // chunk 大小警告的限制
+    chunkSizeWarningLimit: 800, // chunk 大小警告的限制
     rollupOptions: {
       // external: ['react','react-dom'],
       output: {
@@ -35,14 +35,25 @@ export default defineConfig({
     }
   },
   server: {
+    fs:{
+      strict: false,
+    },
     proxy: {
       // 代理所有 /ceg 开头的请求到
-      '/ceg': {
-        // target: process.env.TAOBAO_API_BASE_URL,
+
+      '/ceg/': {
+        target: 'http://10.45.80.101:8090/ceg/',
+        // target: 'http://10.10.194.74/ceg/',
+        changeOrigin: true,
+      },
+
+      // 淘宝
+      '/rap2api/': {
         target: 'http://rap2api.taobao.org/app/mock/320728',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/ceg/, '__')
+        rewrite: (path) => path.replace(/^\/rap2api/, '')
       }
+
     }
   }
 });

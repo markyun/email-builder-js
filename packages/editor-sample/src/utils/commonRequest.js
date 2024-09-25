@@ -64,22 +64,20 @@ function processOptions(option) {
   const language = ''; // 优先获取url中的语言
   const phoneType = 1;
   let newHeaders = {
-    'X-Requested-With': 'XMLHttpRequest',
-    'Device-Type': phoneType,
-    'Channel-Id': 1,
-    Locale: language, // 语言参数
-    // 本地 mock token
-    // Token: !authToken ? '' : authToken,
-    // user_token: !authToken ? '' : authToken,
-    // 'X-CSRF-TOKEN': !authToken ? '' : authToken,
+    // 'X-Requested-With': 'XMLHttpRequest',
+    'Device-Type': 'web',
+    'Device-Id': '',
+    'Terminal-Type': 4,
+    'X-CSRF-TOKEN': window?.top?.portal?.appGlobal.get('_csrf'),
     ...headers,
   };
 
   if (['POST', 'PUT', 'PATCH', 'DELETE'].includes(method)) {
-    newHeaders.Accept = 'application/json';
+    // newHeaders.Accept = 'application/json';
     if (!(data instanceof FormData)) {
       newHeaders = {
         ...newHeaders,
+        Accept: 'application/json',
         'Content-Type': 'application/json; charset=utf-8',
       };
     }
@@ -87,7 +85,6 @@ function processOptions(option) {
 
   const newOptions = {
     getResponse: true,
-    // responseType: 'application/json',
     headers: newHeaders,
     data,
     method,
@@ -109,6 +106,26 @@ const request = async (url, option, isThrowError = true) => {
   return response;
 };
 
-// export const request2 = instance;
-
 export default request;
+
+
+export function getWebRootNew() {
+  let path = window.top.location.pathname;
+  if (path[0] === '/') {
+    path = path.substring(1);
+  }
+  let webRoot = path.split('/')[0] || '';
+  if (webRoot.length>0) {
+    webRoot = `/${webRoot}`;
+  }
+  return webRoot;
+}
+export const getAccessibleAddress = originalAddress => {
+  const prefixUrl = `${
+    window.top.location.origin
+  }${getWebRootNew()}/ceg/UploadImageController/getFileStream?fileName=`;
+  if (originalAddress && originalAddress.length > 0) {
+    return originalAddress.replaceAll('${CEG_CLOUD_DESK_URL}', prefixUrl);
+  }
+  return originalAddress;
+};

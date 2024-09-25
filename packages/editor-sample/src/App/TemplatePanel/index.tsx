@@ -25,9 +25,9 @@ import ShareButton from './ShareButton';
 
 
 // 模板编辑区 核心组件
-export default function TemplatePanel() {
+export default function TemplatePanel(props) {
+  const { isPreview } = props
   const document = useDocument();
-  console.log("模板编辑区document ", document);
 
   // 可以设置当前页面JSON内容
   // resetDocument(getConfiguration(href));
@@ -70,7 +70,7 @@ export default function TemplatePanel() {
         );
       case 'preview':
         return (
-          <Box sx={mainBoxSx}  data-cee="preview">
+          <Box sx={mainBoxSx} data-cee="preview">
             {/* 渲染 EmailBuilder.js 的 json 配置成 html */}
             <Reader document={document} rootBlockId="root" />
           </Box>
@@ -81,6 +81,16 @@ export default function TemplatePanel() {
         return <JsonPanel />;
     }
   };
+
+// 如果是 isPreview 路由，只渲染页面。
+  if (isPreview) {
+    return (
+      <Box sx={mainBoxSx} data-cee="preview">
+        {/* 渲染 EmailBuilder.js 的 json 配置成 html */}
+        <Reader document={document} rootBlockId="root" />
+      </Box>
+    );
+  }
 
   return (
     <>
@@ -120,7 +130,7 @@ export default function TemplatePanel() {
                 </Tooltip>
               </ToggleButton>
             </ToggleButtonGroup>
-            {/* <ShareButton /> */}
+            <ShareButton />
           </Stack>
         </Stack>
         <ToggleInspectorPanelButton />

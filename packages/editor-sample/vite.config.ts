@@ -3,7 +3,8 @@ import react from '@vitejs/plugin-react';
 import { visualizer } from 'rollup-plugin-visualizer'
 
 export default defineConfig({
-  plugins: [react(), visualizer({ open: true })],
+  // plugins: [react(), visualizer({ open: true })],
+  plugins: [react()],
   base: '/email-builder/',
   dedupe: [],
   mode: 'production', // 生产模式

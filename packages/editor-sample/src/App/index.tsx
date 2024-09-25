@@ -38,7 +38,7 @@ export default function App() {
     });
   }, []); // 空依赖数组确保这个 effect 只运行一次
 
-  console.log("Liquid 变量测试",templateOutput);
+  console.log("Liquid 变量测试", templateOutput);
 
   return (
     <>
@@ -46,7 +46,7 @@ export default function App() {
       <SamplesDrawer />
       {/* 右侧属性修改 */}
       <InspectorDrawer />
-       {/* Editor Block */}
+      {/* Editor Block */}
       <Stack
         data-cee="模板编辑区"
         sx={{

@@ -6,6 +6,7 @@ import { TStyle } from '../../../../../../documents/blocks/helpers/TStyle';
 import { NullableColorInput } from '../inputs/ColorInput';
 import { NullableFontFamily } from '../inputs/FontFamily';
 import FontSizeInput from '../inputs/FontSizeInput';
+import LineHeightInput from '../inputs/LineHeightInput';
 import FontWeightInput from '../inputs/FontWeightInput';
 import PaddingInput from '../inputs/PaddingInput';
 import SliderInput from '../inputs/SliderInput';
@@ -23,6 +24,7 @@ export default function SingleStylePropertyPanel({ name, value, onChange }: Styl
     onChange({ ...value, [name]: v });
   };
 
+  // eslint-disable-next-line default-case
   switch (name) {
     case 'backgroundColor':
       return <NullableColorInput label="Background color" defaultValue={defaultValue} onChange={handleChange} />;
@@ -48,6 +50,8 @@ export default function SingleStylePropertyPanel({ name, value, onChange }: Styl
       return <NullableFontFamily label="Font family" defaultValue={defaultValue} onChange={handleChange} />;
     case 'fontSize':
       return <FontSizeInput label="Font size" defaultValue={defaultValue} onChange={handleChange} />;
+    case 'lineHeight':
+      return <LineHeightInput label="line Height" defaultValue={defaultValue} onChange={handleChange} />;
     case 'fontWeight':
       return <FontWeightInput label="Font weight" defaultValue={defaultValue} onChange={handleChange} />;
     case 'textAlign':

@@ -30,7 +30,7 @@ export const BUTTONS: TButtonProps[] = [
       data: {
         props: { text: 'Heading' },
         style: {
-          padding: { top: 16, bottom: 16, left: 24, right: 24 },
+          padding: { top: 8, bottom: 8, left: 16, right: 16 },
         },
       },
     }),
@@ -43,7 +43,7 @@ export const BUTTONS: TButtonProps[] = [
       data: {
         props: { text: '### New text block, markdown supported.', markdown: true },
         style: {
-          padding: { top: 16, bottom: 16, left: 24, right: 24 },
+          padding: { top: 0, bottom: 0, left: 0, right: 0 },
           fontWeight: 'normal',
         },
       },
@@ -60,7 +60,7 @@ export const BUTTONS: TButtonProps[] = [
           text: 'Button',
           url: 'https://www.xxx.com',
         },
-        style: { padding: { top: 16, bottom: 16, left: 24, right: 24 } },
+        style: { padding: { top: 8, bottom: 8, left: 16, right: 16 } },
       },
     }),
   },
@@ -76,7 +76,7 @@ export const BUTTONS: TButtonProps[] = [
           contentAlignment: 'middle',
           linkHref: null,
         },
-        style: { padding: { top: 16, bottom: 16, left: 24, right: 24 } },
+        style: { padding: { top: 8, bottom: 8, left: 16, right: 16 } },
       },
     }),
   },
@@ -90,7 +90,7 @@ export const BUTTONS: TButtonProps[] = [
           imageUrl: 'https://ui-avatars.com/api/?size=128',
           shape: 'circle',
         },
-        style: { padding: { top: 16, bottom: 16, left: 24, right: 24 } },
+        style: { padding: { top: 8, bottom: 8, left: 16, right: 16 } },
       },
     }),
   },
@@ -125,7 +125,7 @@ export const BUTTONS: TButtonProps[] = [
         style: {
           fontSize: 16,
           textAlign: null,
-          padding: { top: 16, bottom: 16, left: 24, right: 24 },
+          padding: { top: 8, bottom: 8, left: 16, right: 16 },
         },
       },
     }),
@@ -141,7 +141,7 @@ export const BUTTONS: TButtonProps[] = [
           columnsCount: 3,
           columns: [{ childrenIds: [] }, { childrenIds: [] }, { childrenIds: [] }],
         },
-        style: { padding: { top: 16, bottom: 16, left: 24, right: 24 } },
+        style: { padding: { top: 8, bottom: 8, left: 16, right: 16 } },
       },
     }),
   },
@@ -151,7 +151,7 @@ export const BUTTONS: TButtonProps[] = [
     block: () => ({
       type: 'Container',
       data: {
-        style: { padding: { top: 16, bottom: 16, left: 24, right: 24 } },
+        style: { padding: { top: 8, bottom: 8, left: 16, right: 16 } },
       },
     }),
   },

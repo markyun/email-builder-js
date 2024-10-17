@@ -28,17 +28,17 @@ export default function App() {
   // Liquid 变量测试
   useEffect(() => {
     const engine = new Liquid({
-      cache: process.env.NODE_ENV === 'production'
+      cache: process.env.NODE_ENV === 'production',
     });
 
     const data = { name: 'Ma.jinyun', test: 'test22' };
-    const template = `Hello, {{ name }}  + {{ test }} {{ template }}!`;
+    const template = 'Hello, {{ name }}  + {{ test }} {{ template }}!';
     engine.parseAndRender(template, data).then(rendered => {
       setTemplateOutput(rendered);
     });
   }, []); // 空依赖数组确保这个 effect 只运行一次
 
-  console.log("Liquid 变量测试", templateOutput);
+  console.log('Liquid 变量测试', templateOutput);
 
   return (
     <>

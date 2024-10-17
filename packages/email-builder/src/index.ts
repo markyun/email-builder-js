@@ -1,10 +1,11 @@
 export { default as renderToStaticMarkup } from './renderers/renderToStaticMarkup';
 
 export {
-  // TReaderBlock,
-  // TReaderDocument,
-  // TReaderBlockProps,
-  // TReaderProps,
+  TReaderBlock,
+  TReaderDocument,
+  TReaderBlockProps,
+  TReaderProps,
+
   //
   ReaderBlockSchema,
   ReaderDocumentSchema,

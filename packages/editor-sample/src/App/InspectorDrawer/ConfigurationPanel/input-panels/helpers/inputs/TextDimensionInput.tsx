@@ -9,7 +9,7 @@ type TextDimensionInputProps = {
 };
 export default function TextDimensionInput({ label, defaultValue, onChange }: TextDimensionInputProps) {
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (ev) => {
-    const value = parseInt(ev.target.value);
+    const value = parseInt(ev.target.value, 10);
     onChange(isNaN(value) ? null : value);
   };
   return (

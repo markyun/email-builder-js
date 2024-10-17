@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 
 import { SaveOutlined } from '@mui/icons-material';
-import { IconButton, Button, Tooltip } from '@mui/material';
-import { renderToStaticMarkup } from '@usewaypoint/email-builder';
+import { IconButton, Tooltip } from '@mui/material';
+import { renderToStaticMarkup } from '@digitalc/email-builder';
 import { SnackbarProvider, useSnackbar } from 'notistack';
 
 import { useDocument } from '../../../documents/editor/EditorContext';
@@ -20,8 +20,8 @@ function SaveData() {
       transitionDuration: { enter: 525, exit: 295 },
       anchorOrigin: {
         vertical: 'top',
-        horizontal: 'center'
-      }
+        horizontal: 'center',
+      },
     });
   };
 
@@ -53,7 +53,8 @@ function SaveData() {
       <Tooltip title="Save JSON code and Email code">
         <IconButton onClick={() => {
           saveCode('clicked');
-        }} >
+        }}
+        >
           <SaveOutlined fontSize="small" />
         </IconButton>
 

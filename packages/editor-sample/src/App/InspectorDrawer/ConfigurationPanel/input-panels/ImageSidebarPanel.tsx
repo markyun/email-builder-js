@@ -10,7 +10,7 @@ import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { ImageProps, ImagePropsSchema } from '@usewaypoint/block-image';
 
-import request, {getAccessibleAddress} from '../../../../utils/commonRequest';
+import request, { getAccessibleAddress } from '../../../../utils/commonRequest';
 import BaseSidebarPanel from './helpers/BaseSidebarPanel';
 import RadioGroupInput from './helpers/inputs/RadioGroupInput';
 import TextDimensionInput from './helpers/inputs/TextDimensionInput';
@@ -86,12 +86,12 @@ export default function ImageSidebarPanel({ data, setData }: ImageSidebarPanelPr
               Upload files
               <VisuallyHiddenInput
                 type="file"
-                accept='.jpeg,.jpg,.png,.gif'
+                accept=".jpeg,.jpg,.png,.gif"
                 onChange={(event) => {
-                  console.log(event.target.files)
+                  console.log(event.target.files);
                   const formData = new FormData();
                   formData.append('file', event?.target?.files?.[0]);
-                  request('/ceg/UploadImageController/saveImageFile', {
+                  request('/ceg/ceg/UploadImageController/saveImageFile', {
                   // request('/rap2api/ceg/UploadImageController/saveImageFile', {
                     method: 'post',
                     data: formData,
@@ -103,7 +103,7 @@ export default function ImageSidebarPanel({ data, setData }: ImageSidebarPanelPr
                       // 处理响应
                       console.log('ImageFile 上传成功', response);
                       const ImgUrl = response?.fileLocation;
-                      if(ImgUrl){
+                      if (ImgUrl) {
                         const url = getAccessibleAddress(ImgUrl);
                         updateData({ ...data, props: { ...data.props, url } });
                       }

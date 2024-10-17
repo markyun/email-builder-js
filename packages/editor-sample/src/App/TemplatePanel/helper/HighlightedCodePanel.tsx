@@ -10,13 +10,13 @@ export default function HighlightedCodePanel({ type, value }: TextEditorPanelPro
   const [code, setCode] = useState<string | null>(null);
 
   useEffect(() => {
+    // eslint-disable-next-line default-case
     switch (type) {
       case 'html':
         html(value).then(setCode);
         return;
       case 'json':
         json(value).then(setCode);
-        return;
     }
   }, [setCode, value, type]);
 
@@ -27,6 +27,7 @@ export default function HighlightedCodePanel({ type, value }: TextEditorPanelPro
   return (
     <pre
       style={{ margin: 0, padding: 16 }}
+      // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: code }}
       onClick={(ev) => {
         const s = window.getSelection();

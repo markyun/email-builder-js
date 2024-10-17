@@ -1,11 +1,8 @@
 import React from 'react';
-
-import { Box, Button, Divider, Drawer, Link, Stack, Typography } from '@mui/material';
-
+import { Divider, Drawer, Stack, Typography } from '@mui/material';
 import { useSamplesDrawerOpen } from '../../documents/editor/EditorContext';
-
 import SidebarButton from './SidebarButton';
-import logo from './logo.png';
+// import logo from './logo.png';
 
 export const SAMPLES_DRAWER_WIDTH = 260;
 
@@ -40,11 +37,10 @@ export default function SamplesDrawer() {
             <SidebarButton href="#sample/respond-to-message">Respond to inquiry</SidebarButton>
           </Stack>
           <Divider />
-          <Stack>
-          </Stack>
+          <Stack />
         </Stack>
-        <Stack spacing={2} px={0.75} py={3}>
-          <Link href="https://usewaypoint.com?utm_source=emailbuilderjs" target="_blank" sx={{ lineHeight: 1 }}>
+        {/* <Stack spacing={2} px={0.75} py={3}>
+          <Link href="https://xxx.com?utm_source=emailbuilderjs" target="_blank" sx={{ lineHeight: 1 }}>
             <Box component="img" src={logo} width={162} />
           </Link>
           <Button
@@ -56,7 +52,7 @@ export default function SamplesDrawer() {
           >
             Learn more demo
           </Button>
-        </Stack>
+        </Stack> */}
       </Stack>
     </Drawer>
   );

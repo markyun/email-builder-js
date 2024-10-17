@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { HeightOutlined, OpacityOutlined } from '@mui/icons-material';
-import { DividerProps, DividerPropsDefaults, DividerPropsSchema } from '@usewaypoint/block-divider';
+import { DividerProps, DividerPropsDefaults, DividerPropsSchema } from '@digitalc/block-divider';
 
 import BaseSidebarPanel from './helpers/BaseSidebarPanel';
 import ColorInput from './helpers/inputs/ColorInput';
@@ -16,7 +16,7 @@ export default function DividerSidebarPanel({ data, setData }: DividerSidebarPan
   const [, setErrors] = useState<Zod.ZodError | null>(null);
   const updateData = (d: unknown) => {
     const res = DividerPropsSchema.safeParse(d);
-    console.log("🚀 ~ Divider updateData ~ res:", res)
+    console.log('🚀 ~ Divider updateData ~ res:', res);
     if (res.success) {
       setData(res.data);
       setErrors(null);

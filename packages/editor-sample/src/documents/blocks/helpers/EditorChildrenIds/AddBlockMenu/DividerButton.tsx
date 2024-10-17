@@ -38,6 +38,7 @@ export default function DividerButton({ buttonElement, onClick }: Props) {
     <Fade in={visible}>
       <IconButton
         size="small"
+        data-cee="新增icon"
         sx={{
           p: 0.12,
           position: 'absolute',

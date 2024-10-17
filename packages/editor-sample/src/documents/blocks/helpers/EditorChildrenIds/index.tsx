@@ -19,6 +19,7 @@ export type EditorChildrenIdsProps = {
   childrenIds: string[] | null | undefined;
   onChange: (val: EditorChildrenChange) => void;
 };
+
 /**
  * EditorChildrenIds组件，用于管理和渲染给定编辑块内容，包含新增箭头
  * @param {string[]} childrenIds - 子编辑块的标识数组
@@ -56,7 +57,7 @@ export default function EditorChildrenIds({ childrenIds, onChange }: EditorChild
       {childrenIds.map((childId, i) => (
         <Fragment key={childId}>
           <AddBlockButton onSelect={(block) => insertBlock(block, i)} />
-          <EditorBlock id={childId}  />
+          <EditorBlock id={childId} />
         </Fragment>
       ))}
       {/* 新增组件的 icon按钮 */}

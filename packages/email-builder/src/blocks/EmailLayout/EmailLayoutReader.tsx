@@ -4,8 +4,10 @@ import { ReaderBlock } from '../../Reader/core';
 
 import { EmailLayoutProps } from './EmailLayoutPropsSchema';
 
+// eslint-disable-next-line consistent-return
 function getFontFamily(fontFamily: EmailLayoutProps['fontFamily']) {
   const f = fontFamily ?? 'MODERN_SANS';
+  // eslint-disable-next-line default-case
   switch (f) {
     case 'MODERN_SANS':
       return '"Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial, sans-serif';
@@ -58,7 +60,7 @@ export default function EmailLayoutReader(props: EmailLayoutProps) {
         width="100%"
         style={{
           margin: '0 auto',
-          maxWidth: '768px',
+          maxWidth: props.width || '768px',
           backgroundColor: props.canvasColor ?? '#FFFFFF',
           borderRadius: props.borderRadius ?? undefined,
           border: getBorder(props),

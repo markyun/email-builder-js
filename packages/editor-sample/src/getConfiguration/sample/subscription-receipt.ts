@@ -828,7 +828,7 @@ const SUBSCRIPTION_RECEIPT: TEditorConfiguration = {
         },
       },
       props: {
-        text: `JULY 10, 2023 – AUGUST 1, 2023`,
+        text: 'JULY 10, 2023 – AUGUST 1, 2023',
       },
     },
   },

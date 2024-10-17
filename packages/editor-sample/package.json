@@ -1,14 +1,41 @@
 {
-  "name": "@usewaypoint/editor-sample",
+  "name": "@digitalc/editor-sample",
   "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite --host",
+    "build:development": "NODE_ENV=development vite build",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint --fix --ext .tsx src"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ],
+    "*.@(yml|yaml)": [
+      "prettier --parser yaml --write"
+    ],
+    "*.md": [
+      "prettier --parser markdown --write"
+    ],
+    "*.json": [
+      "prettier --parser json --write"
+    ]
   },
   "dependencies": {
     "@codemirror/lang-javascript": "^6.2.2",
+    "@digitalc/block-columns-container": "^0.0.1",
+    "@digitalc/block-divider": "^0.0.1",
+    "@usewaypoint/block-text": "^0.0.3",
+    "@digitalc/block-text": "file:../block-text",
+    "@digitalc/email-builder": "^0.0.4",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.10",
@@ -19,16 +46,12 @@
     "@uiw/react-markdown-editor": "^6.1.2",
     "@usewaypoint/block-avatar": "^0.0.3",
     "@usewaypoint/block-button": "^0.0.3",
-    "@usewaypoint/block-columns-container": "file:../block-columns-container",
     "@usewaypoint/block-container": "^0.0.2",
-    "@usewaypoint/block-divider": "file:../block-divider",
     "@usewaypoint/block-heading": "^0.0.3",
     "@usewaypoint/block-html": "^0.0.3",
     "@usewaypoint/block-image": "^0.0.5",
     "@usewaypoint/block-spacer": "^0.0.3",
-    "@usewaypoint/block-text": "^0.0.6",
     "@usewaypoint/document-core": "^0.0.6",
-    "@usewaypoint/email-builder": "file:../email-builder",
     "axios": "^1.7.7",
     "codemirror": "^5.65.17",
     "highlight.js": "^11.9.0",

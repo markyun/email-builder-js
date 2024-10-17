@@ -69,7 +69,7 @@ export default function TuneMenu({ blockId }: Props) {
 
   const handleBlockDuplicateClick = () => {
     const { newDocument, newBlockId } = cloneBlockRecursively(blockId, document);
-    newDocument['root'].data.childrenIds.push(newBlockId);
+    newDocument.root.data.childrenIds.push(newBlockId);
     resetDocument(newDocument);
   };
 
@@ -93,6 +93,7 @@ export default function TuneMenu({ blockId }: Props) {
     for (const [id, b] of Object.entries(nDocument)) {
       const block = b as TEditorBlock;
       if (id === blockId) {
+        // eslint-disable-next-line no-continue
         continue;
       }
       switch (block.type) {
@@ -160,6 +161,7 @@ export default function TuneMenu({ blockId }: Props) {
     for (const [id, b] of Object.entries(nDocument)) {
       const block = b as TEditorBlock;
       if (id === blockId) {
+        // eslint-disable-next-line no-continue
         continue;
       }
       switch (block.type) {
@@ -220,7 +222,7 @@ export default function TuneMenu({ blockId }: Props) {
             <ArrowDownwardOutlined fontSize="small" />
           </IconButton>
         </Tooltip>
-        <hr style={{margin: '8px 0px',flexShrink: 0,border:' 0.6px solid rgba(0, 0, 0, 0.12)'}}></hr>
+        <hr style={{ margin: '8px 0px', flexShrink: 0, border: ' 0.6px solid rgba(0, 0, 0, 0.12)' }} />
         <Tooltip title="Duplicate" placement="left-start">
           <IconButton sx={{ color: 'text.primary' }} onClick={handleBlockDuplicateClick}>
             <CopyAll fontSize="small" />

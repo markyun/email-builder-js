@@ -11,6 +11,7 @@ import WELCOME from './sample/welcome';
 export default function getConfiguration(template: string) {
   if (template.startsWith('#sample/')) {
     const sampleName = template.replace('#sample/', '');
+    // eslint-disable-next-line default-case
     switch (sampleName) {
       case 'welcome':
         return WELCOME;
@@ -35,10 +36,17 @@ export default function getConfiguration(template: string) {
   if (template.startsWith('#code/')) {
     try {
       const encodedString = template.replace('#code/', '');
-      const configurationString = decodeURIComponent(atob((encodedString)));
+      const atobString = (atob((encodedString)));
+      // 将 Base64 解码后的字符串转换为 ArrayBuffer
+      const charArray = Uint8Array.from(atobString, char => char.charCodeAt(0));
+      // 使用 TextDecoder 和 utf-8 编码进行解码
+      const decoder = new TextDecoder('utf-8');
+      const configurationString = decodeURIComponent(decoder.decode(charArray));
+
+      console.log('🚀 ~ getConfiguration ~ 二次编辑获取到的code:', configurationString);
       return JSON.parse(configurationString);
     } catch {
-      console.error(`Couldn't load configuration from #code/{base64}.`);
+      console.error('Couldn\'t load configuration from #code/{base64}.');
     }
   }
 

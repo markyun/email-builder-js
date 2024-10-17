@@ -54,7 +54,7 @@ const RESPOND_TO_MESSAGE: TEditorConfiguration = {
       },
       props: {
         level: 'h2',
-        text: `Respond to Anna's Inquiry`,
+        text: 'Respond to Anna\'s Inquiry',
       },
     },
   },
@@ -143,7 +143,7 @@ const RESPOND_TO_MESSAGE: TEditorConfiguration = {
         size: 'large',
         buttonStyle: 'pill',
         text: 'Respond',
-        url: 'http://example.usewaypoint.com/request/2334234',
+        url: 'http://example.xxx.com/request/2334234',
         fullWidth: false,
       },
     },

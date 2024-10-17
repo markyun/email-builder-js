@@ -22,10 +22,9 @@ export default function AddBlockButton({ onSelect, placeholder }: Props) {
     if (placeholder) {
       // 什么都没有时，icon的占位按钮
       return <PlaceholderButton onClick={handleButtonClick} />;
-    } else {
-      // 有元素时，上下新增icon的占位按钮
-      return <DividerButton buttonElement={buttonElement} onClick={handleButtonClick} />;
     }
+    // 有元素时，上下新增icon的占位按钮
+    return <DividerButton buttonElement={buttonElement} onClick={handleButtonClick} />;
   };
 
   return (

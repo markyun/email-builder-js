@@ -1,8 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-
 import { MonitorOutlined, PhoneIphoneOutlined } from '@mui/icons-material';
 import { Box, Stack, SxProps, ToggleButton, ToggleButtonGroup, Tooltip, Button } from '@mui/material';
-import { Reader } from '@usewaypoint/email-builder';
+import { Reader } from '@digitalc/email-builder';
 
 import EditorBlock from '../../documents/editor/EditorBlock';
 import {
@@ -26,7 +26,7 @@ import ShareButton from './ShareButton';
 
 // 模板编辑区 核心组件
 export default function TemplatePanel(props) {
-  const { isPreview } = props
+  const { isPreview } = props;
   const document = useDocument();
 
   // 可以设置当前页面JSON内容
@@ -43,6 +43,7 @@ export default function TemplatePanel(props) {
       ...mainBoxSx,
       margin: '0px auto',
       width: 370,
+      maxWidth: 370,
       height: 800,
       boxShadow:
         'rgba(33, 36, 67, 0.04) 0px 10px 20px, rgba(33, 36, 67, 0.04) 0px 2px 6px, rgba(33, 36, 67, 0.04) 0px 0px 1px',
@@ -60,7 +61,9 @@ export default function TemplatePanel(props) {
     }
   };
 
+  // eslint-disable-next-line consistent-return
   const renderMainPanel = () => {
+    // eslint-disable-next-line default-case
     switch (selectedMainTab) {
       case 'editor':
         return (
@@ -82,7 +85,7 @@ export default function TemplatePanel(props) {
     }
   };
 
-// 如果是 isPreview 路由，只渲染页面。
+  // 如果是 isPreview 路由，只渲染页面。
   if (isPreview) {
     return (
       <Box sx={mainBoxSx} data-cee="preview">
@@ -130,7 +133,7 @@ export default function TemplatePanel(props) {
                 </Tooltip>
               </ToggleButton>
             </ToggleButtonGroup>
-            <ShareButton />
+            {/* <ShareButton /> */}
           </Stack>
         </Stack>
         <ToggleInspectorPanelButton />

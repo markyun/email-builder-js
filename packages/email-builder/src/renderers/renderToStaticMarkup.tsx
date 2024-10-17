@@ -8,13 +8,14 @@ type TOptions = {
 };
 export default function renderToStaticMarkup(document: TReaderDocument, { rootBlockId }: TOptions) {
   return (
-    '<!DOCTYPE html>' +
-    baseRenderToStaticMarkup(
-      <html>
-        <body>
-          <Reader document={document} rootBlockId={rootBlockId} />
-        </body>
-      </html>
-    )
+    `<!DOCTYPE html>${
+      baseRenderToStaticMarkup(
+        // eslint-disable-next-line jsx-a11y/html-has-lang
+        <html>
+          <body>
+            <Reader document={document} rootBlockId={rootBlockId} />
+          </body>
+        </html>
+      )}`
   );
 }

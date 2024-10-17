@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-
 import { RoundedCornerOutlined } from '@mui/icons-material';
-
+import {Stack } from '@mui/material';
 import EmailLayoutPropsSchema, {
   EmailLayoutProps,
 } from '../../../../documents/blocks/EmailLayout/EmailLayoutPropsSchema';
@@ -10,12 +9,13 @@ import BaseSidebarPanel from './helpers/BaseSidebarPanel';
 import ColorInput, { NullableColorInput } from './helpers/inputs/ColorInput';
 import { NullableFontFamily } from './helpers/inputs/FontFamily';
 import SliderInput from './helpers/inputs/SliderInput';
+import TextDimensionInput from './helpers/inputs/TextDimensionInput';
 
 type EmailLayoutSidebarFieldsProps = {
   data: EmailLayoutProps;
   setData: (v: EmailLayoutProps) => void;
 };
-//  修改右侧 EmailLayout 全局样式
+//  修改右侧 EmailLayout Global 全局样式
 export default function EmailLayoutSidebarFields({ data, setData }: EmailLayoutSidebarFieldsProps) {
   const [, setErrors] = useState<Zod.ZodError | null>(null);
 
@@ -32,20 +32,34 @@ export default function EmailLayoutSidebarFields({ data, setData }: EmailLayoutS
   return (
     <BaseSidebarPanel title="Global">
       <ColorInput
-        label="Backdrop color"
+        label="Page Backdrop color"
         defaultValue={data.backdropColor ?? '#F5F5F5'}
         onChange={(backdropColor) => updateData({ ...data, backdropColor })}
       />
       <ColorInput
-        label="Canvas color"
+        label="Page Canvas color"
         defaultValue={data.canvasColor ?? '#FFFFFF'}
         onChange={(canvasColor) => updateData({ ...data, canvasColor })}
       />
       <NullableColorInput
-        label="Canvas border color"
+        label="Page Canvas border color"
         defaultValue={data.borderColor ?? null}
         onChange={(borderColor) => updateData({ ...data, borderColor })}
       />
+
+      <Stack direction="row" spacing={2}>
+        <TextDimensionInput
+          label="Page Width"
+          defaultValue={data.width ?? '768px'}
+          onChange={(width) => updateData({ ...data, width })}
+        />
+        <TextDimensionInput
+          label="Page Height"
+          defaultValue={data.height ?? '100%'}
+          onChange={(height) => updateData({ ...data, height })}
+        />
+      </Stack>
+
       <SliderInput
         iconLabel={<RoundedCornerOutlined />}
         units="px"

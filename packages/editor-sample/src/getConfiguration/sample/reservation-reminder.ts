@@ -285,7 +285,7 @@ const RESERVATION_REMINDER: TEditorConfiguration = {
         fullWidth: false,
         size: 'large',
         text: 'Send Elaina a message',
-        url: 'https://www.usewaypoint.com',
+        url: 'https://www.xxx.com',
       },
     },
   },
@@ -305,7 +305,7 @@ const RESERVATION_REMINDER: TEditorConfiguration = {
       props: {
         url: 'https://d1iiu589g39o6c.cloudfront.net/live/platforms/platform_A9wwKSL6EV6orh6f/images/wptemplateimage_QWeWcucRbjPqoewY/L1030293.jpg',
         alt: 'Photo',
-        linkHref: 'https://example.usewaypoint.com/listings/r029348209842',
+        linkHref: 'https://example.xxx.com/listings/r029348209842',
         contentAlignment: 'middle',
       },
     },

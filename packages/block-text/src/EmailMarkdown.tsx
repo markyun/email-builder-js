@@ -47,6 +47,8 @@ const ALLOWED_TAGS: AllowedTags[] = [
 ];
 const GENERIC_ALLOWED_ATTRIBUTES = ['style', 'title'];
 
+let htmlData: any ;
+
 function sanitizer(html: string): string {
   return insane(html, {
     allowedTags: ALLOWED_TAGS,
@@ -67,6 +69,8 @@ function sanitizer(html: string): string {
 }
 
 class CustomRenderer extends Renderer {
+  private paragraphCount: number = 0;
+
   table(header: string, body: string) {
     return `<table width="100%">
 <thead>
@@ -82,6 +86,28 @@ ${body}</tbody>
     }
     return `<a href="${href}" title="${title}" target="_blank">${text}</a>`;
   }
+
+  paragraph(text: string) {
+    // eslint-disable-next-line no-plusplus
+    this.paragraphCount++;
+    const pLength = marked.lexer(htmlData);
+    const newPLength = pLength.filter(item => (item.type === 'paragraph'));
+    const isFirstParagraph = this.paragraphCount === 1;
+    const isLastParagraph = this.paragraphCount === newPLength.length;
+
+    let style = '';
+    if (isFirstParagraph) {
+      style += 'margin-top: 0;';
+    }
+    if (isLastParagraph) {
+      style += 'margin-bottom: 0;';
+    }
+    return `<p style="${style}">${text}</p>`;
+  }
+
+  // paragraph (text: string) {
+  //   return `<p style="margin: 0;">${text}</p>`;
+  // }
 }
 
 function renderMarkdownString(str: string): string {
@@ -104,6 +130,8 @@ type Props = {
   markdown: string;
 };
 export default function EmailMarkdown({ markdown, ...props }: Props) {
+  htmlData = markdown;
   const data = useMemo(() => renderMarkdownString(markdown), [markdown]);
+  // eslint-disable-next-line react/no-danger
   return <div {...props} dangerouslySetInnerHTML={{ __html: data }} />;
 }

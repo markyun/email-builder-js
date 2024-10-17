@@ -80,7 +80,7 @@ const RESET_PASSWORD: TEditorConfiguration = {
         },
       },
       props: {
-        text: `If you didn't request a reset, don't worry. You can safely ignore this email.`,
+        text: 'If you didn\'t request a reset, don\'t worry. You can safely ignore this email.',
       },
     },
   },
@@ -107,7 +107,7 @@ const RESET_PASSWORD: TEditorConfiguration = {
         fullWidth: false,
         size: 'medium',
         text: 'Change my password',
-        url: 'https://example.usewaypoint.com/reset_password?token=02938409809w8r09a83wr098aw0',
+        url: 'https://example.xxx.com/reset_password?token=02938409809w8r09a83wr098aw0',
       },
     },
   },

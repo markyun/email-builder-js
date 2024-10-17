@@ -1,0 +1,55 @@
+.CEEMacroTooltip {
+  background: #fff;
+  box-shadow: rgb(255, 255, 255) 0px 0px 0px 0px, rgba(40, 40, 40, 0.2) 0px 0px 0px 1px, rgba(0, 0, 0, 0.15) 0px 10px 15px -3px, rgba(74, 73, 73, 0.3) 0px 4px 6px -2px;
+  min-width: 300px;
+  min-height: 400px;
+  max-width:none!important;
+  transition:none!important;
+}
+
+.CEEMacroTooltip  .css-sepisw-MuiTooltip-tooltip,.CEEMacroTooltip  > .MuiBox-root {
+  max-width: auto!important;
+}
+
+.CEEMacroTooltip .MuiTabs-root.MuiTabs-vertical{
+  flex: 0 0 auto;
+}
+
+.CEEMacroTooltip>div {
+  background: #fff;
+  color: #000;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.customMacrPanel {
+  position: relative;
+  overflow: auto;
+  max-height: 320px;
+  flex: 1;
+}
+
+.customMacrPanel  > div{
+  padding-right: 0;
+}
+
+.macrolist  p{
+  margin: 0;
+  /* height: 30px; */
+  line-height:2;
+  padding: 4px 12px;
+}
+
+.macrolist  p:hover{
+  background: #ccc;
+}
+
+/* ceeEditer */
+.ceeEditer div.cm-content{
+  width: 200px; /* 可以根据需要调整宽度 */
+  word-wrap: break-word; /* 让超长文字在容器内换行 */
+  word-break: break-all; /* 切断长单词 */
+  white-space: normal; /* 允许文本换行 */
+  overflow-wrap: break-word; /* 用于兼容某些浏览器版本 */
+
+}

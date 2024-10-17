@@ -202,7 +202,7 @@ const ORDER_ECOMMERCE: TEditorConfiguration = {
         fullWidth: false,
         size: 'large',
         text: 'View your order',
-        url: 'https://example.usewaypoint.com/orders/103571871',
+        url: 'https://example.xxx.com/orders/103571871',
       },
     },
   },

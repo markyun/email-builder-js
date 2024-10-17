@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import React from 'react';
 
 import { useCurrentBlockId } from '../../editor/EditorBlock';
@@ -8,6 +9,7 @@ import { EmailLayoutProps } from './EmailLayoutPropsSchema';
 
 function getFontFamily(fontFamily: EmailLayoutProps['fontFamily']) {
   const f = fontFamily ?? 'MODERN_SANS';
+  // eslint-disable-next-line default-case
   switch (f) {
     case 'MODERN_SANS':
       return '"Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial, sans-serif';
@@ -30,6 +32,7 @@ function getFontFamily(fontFamily: EmailLayoutProps['fontFamily']) {
   }
 }
 
+// 基础布局容器，必定触发EditorChildrenIds组件，用于管理和渲染给定编辑块内容，包含新增箭头
 export default function EmailLayoutEditor(props: EmailLayoutProps) {
   const childrenIds = props.childrenIds ?? [];
   const document = useDocument();
@@ -60,7 +63,7 @@ export default function EmailLayoutEditor(props: EmailLayoutProps) {
         width="100%"
         style={{
           margin: '0 auto',
-          maxWidth: '768px',
+          maxWidth: props.width || '768px',
           backgroundColor: props.canvasColor ?? '#FFFFFF',
           borderRadius: props.borderRadius ?? undefined,
           border: (() => {
@@ -88,7 +91,7 @@ export default function EmailLayoutEditor(props: EmailLayoutProps) {
                       type: 'EmailLayout',
                       data: {
                         ...document[currentBlockId].data,
-                        childrenIds: childrenIds,
+                        childrenIds,
                       },
                     },
                   });

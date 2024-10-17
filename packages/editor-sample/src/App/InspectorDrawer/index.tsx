@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 import { Box, Drawer, Tab, Tabs } from '@mui/material';
@@ -14,7 +15,9 @@ export default function InspectorDrawer() {
   const selectedSidebarTab = useSelectedSidebarTab();
   const inspectorDrawerOpen = useInspectorDrawerOpen();
 
+  // eslint-disable-next-line consistent-return
   const renderCurrentSidebarPanel = () => {
+    // eslint-disable-next-line default-case
     switch (selectedSidebarTab) {
       case 'block-configuration':
         return <ConfigurationPanel />;

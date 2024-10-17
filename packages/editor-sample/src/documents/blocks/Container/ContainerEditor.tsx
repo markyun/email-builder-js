@@ -25,7 +25,7 @@ export default function ContainerEditor({ style, props }: ContainerProps) {
               type: 'Container',
               data: {
                 ...document[currentBlockId].data,
-                props: { childrenIds: childrenIds },
+                props: { childrenIds },
               },
             },
           });

@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from 'axios';
+
 const instance = axios.create({
   // 设置默认的请求头
   headers: {},
@@ -9,7 +11,7 @@ const instance = axios.create({
 // 请求拦截器
 instance.interceptors.response.use(
   // eslint-disable-next-line no-unused-vars
- response => {
+  response => {
     // 2xx 范围内的状态码都会触发该函数。
     // 对响应数据做点什么
     return response;
@@ -65,10 +67,16 @@ function processOptions(option) {
   const phoneType = 1;
   let newHeaders = {
     // 'X-Requested-With': 'XMLHttpRequest',
+    // Locale: language, // 语言参数
+    // 本地 mock token
+    // Token: !authToken ? '' : authToken,
+    // user_token: !authToken ? '' : authToken,
+    // 'X-CSRF-TOKEN': !authToken ? '' : authToken,
     'Device-Type': 'web',
     'Device-Id': '',
     'Terminal-Type': 4,
-    'X-CSRF-TOKEN': window?.top?.portal?.appGlobal.get('_csrf'),
+    // window.sessionStorage.getItem('X-CSRF-TOKEN')
+    'X-CSRF-TOKEN': window?.top?.portal?.appGlobal.get('_csrf') || 'f62e4960-bec8-4b3d-9716-c2ac8ba12259',
     ...headers,
   };
 
@@ -85,6 +93,7 @@ function processOptions(option) {
 
   const newOptions = {
     getResponse: true,
+    // responseType: 'application/json',
     headers: newHeaders,
     data,
     method,
@@ -106,6 +115,8 @@ const request = async (url, option, isThrowError = true) => {
   return response;
 };
 
+// export const request2 = instance;
+
 export default request;
 
 
@@ -115,7 +126,7 @@ export function getWebRootNew() {
     path = path.substring(1);
   }
   let webRoot = path.split('/')[0] || '';
-  if (webRoot.length>0) {
+  if (webRoot.length > 0) {
     webRoot = `/${webRoot}`;
   }
   return webRoot;
@@ -125,6 +136,7 @@ export const getAccessibleAddress = originalAddress => {
     window.top.location.origin
   }${getWebRootNew()}/ceg/UploadImageController/getFileStream?fileName=`;
   if (originalAddress && originalAddress.length > 0) {
+    // eslint-disable-next-line no-template-curly-in-string
     return originalAddress.replaceAll('${CEG_CLOUD_DESK_URL}', prefixUrl);
   }
   return originalAddress;

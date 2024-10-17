@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 
 import { setDocument, useDocument } from '../../documents/editor/EditorContext';
@@ -15,7 +16,9 @@ export default function DataPanel() {
     throw new Error('Expected "root" element to be of type EmailLayout');
   }
 
-  return <>
-        <DataSidebarPanel  />
-      </>
+  return (
+    <>
+      <DataSidebarPanel />
+    </>
+  );
 }

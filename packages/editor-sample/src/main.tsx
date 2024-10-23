@@ -8,7 +8,7 @@ import App from './App';
 import Preview from './Preview';
 import theme from './theme';
 
-console.log('process.env.NODE_ENV :', process.env.NODE_ENV);
+// console.log('process.env.NODE_ENV :', process.env.NODE_ENV);
 
 // 非生产模式，触发 sentry 上报，production 模式不上报
 // if (process.env.NODE_ENV === 'development') {

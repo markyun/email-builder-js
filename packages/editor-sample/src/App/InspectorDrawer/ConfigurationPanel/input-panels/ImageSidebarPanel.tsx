@@ -88,7 +88,6 @@ export default function ImageSidebarPanel({ data, setData }: ImageSidebarPanelPr
                 type="file"
                 accept=".jpeg,.jpg,.png,.gif"
                 onChange={(event) => {
-                  console.log(event.target.files);
                   const formData = new FormData();
                   formData.append('file', event?.target?.files?.[0]);
                   request('/ceg/ceg/UploadImageController/saveImageFile', {

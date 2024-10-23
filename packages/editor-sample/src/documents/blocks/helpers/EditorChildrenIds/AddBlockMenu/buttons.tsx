@@ -11,6 +11,7 @@ import {
   NotesOutlined,
   SmartButtonOutlined,
   ViewColumnOutlined,
+  OndemandVideoOutlined,
 } from '@mui/icons-material';
 
 import { TEditorBlock } from '../../../../editor/core';
@@ -49,7 +50,6 @@ export const BUTTONS: TButtonProps[] = [
       },
     }),
   },
-
   {
     label: 'Button',
     icon: <SmartButtonOutlined />,
@@ -126,6 +126,21 @@ export const BUTTONS: TButtonProps[] = [
           fontSize: 16,
           textAlign: null,
           padding: { top: 8, bottom: 8, left: 16, right: 16 },
+        },
+      },
+    }),
+  },
+
+  {
+    label: 'Video',
+    icon: <OndemandVideoOutlined />,
+    block: () => ({
+      type: 'Video',
+      data: {
+        props: { url: '', controls: true },
+        style: {
+          padding: { top: 8, bottom: 8, left: 16, right: 16 },
+          fontWeight: 'normal',
         },
       },
     }),

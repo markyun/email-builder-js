@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { RoundedCornerOutlined } from '@mui/icons-material';
-import {Stack } from '@mui/material';
+import { Stack } from '@mui/material';
 import EmailLayoutPropsSchema, {
   EmailLayoutProps,
 } from '../../../../documents/blocks/EmailLayout/EmailLayoutPropsSchema';

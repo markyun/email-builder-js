@@ -1,0 +1,29 @@
+.cee-breadcrumb{
+  cursor: pointer;
+    background-color: rgb(0, 121, 204);
+    color: white;
+    display: inline-flex;
+    position: absolute;
+    top: -24px;
+    left: -1px;
+    min-height: 24px;
+    gap: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    z-index: 1050;
+    /* bottom: 100%; */
+}
+.cee-breadcrumb  li  a , .cee-breadcrumb li , .cee-breadcrumb li p{
+  color: white;
+  font-size: 0.75rem;
+  line-height: 1.43;
+  white-space: nowrap;
+}
+.cee-breadcrumb ol{
+  display: flex;
+  flex-wrap: nowrap;
+}

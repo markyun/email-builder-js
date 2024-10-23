@@ -9,6 +9,7 @@ import FontSizeInput from '../inputs/FontSizeInput';
 import LineHeightInput from '../inputs/LineHeightInput';
 import FontWeightInput from '../inputs/FontWeightInput';
 import PaddingInput from '../inputs/PaddingInput';
+import MarginInput from '../inputs/MarginInput';
 import SliderInput from '../inputs/SliderInput';
 import TextAlignInput from '../inputs/TextAlignInput';
 
@@ -58,5 +59,9 @@ export default function SingleStylePropertyPanel({ name, value, onChange }: Styl
       return <TextAlignInput label="Alignment" defaultValue={defaultValue} onChange={handleChange} />;
     case 'padding':
       return <PaddingInput label="Padding" defaultValue={defaultValue} onChange={handleChange} />;
+    case 'margin':
+      return <MarginInput label="Margin" defaultValue={defaultValue} onChange={handleChange} />;
+    case 'float':
+      return <MarginInput label="Float" defaultValue={defaultValue} onChange={handleChange} />;
   }
 }

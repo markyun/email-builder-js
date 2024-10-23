@@ -2987,9 +2987,8 @@ const MacroTabs = (props) => {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const handleChange = (event, newValue) => {
-    console.log(newValue);
-  };
+  // const handleChange = (event, newValue) => {
+  // };
 
   return (
     <>

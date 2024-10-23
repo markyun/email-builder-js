@@ -30,8 +30,6 @@ function SaveData() {
   const code = JSON.stringify(doc, null, ' ');
 
   const saveCode = () => {
-    // console.log("saveCode", code);
-    // console.log("saveCode htmlCode", htmlCode);
     // 通知父窗口保存
     window?.parent?.postMessage(
       {

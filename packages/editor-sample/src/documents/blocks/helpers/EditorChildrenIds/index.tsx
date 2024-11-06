@@ -2,6 +2,8 @@ import React, { Fragment } from 'react';
 
 import { TEditorBlock } from '../../../editor/core';
 import EditorBlock from '../../../editor/EditorBlock';
+// import { useSelectedBlockId } from '../../../editor/EditorContext';
+
 
 import AddBlockButton from './AddBlockMenu';
 
@@ -27,21 +29,25 @@ export type EditorChildrenIdsProps = {
  * @returns {React.ReactNode} - 渲染的子编辑块和其他UI元素
  */
 export default function EditorChildrenIds({ childrenIds, onChange }: EditorChildrenIdsProps) {
+  const containerBlockId = `${generateId()}-container`;
+  // const selectedBlockId = useSelectedBlockId();
   const appendBlock = (block: TEditorBlock) => {
     const blockId = generateId();
     return onChange({
       blockId,
+      containerBlockId,
       block,
-      childrenIds: [...(childrenIds || []), blockId],
+      childrenIds: [...(childrenIds || []), containerBlockId],
     });
   };
 
   const insertBlock = (block: TEditorBlock, index: number) => {
     const blockId = generateId();
     const newChildrenIds = [...(childrenIds || [])];
-    newChildrenIds.splice(index, 0, blockId);
+    newChildrenIds.splice(index, 0, containerBlockId);
     return onChange({
       blockId,
+      containerBlockId,
       block,
       childrenIds: newChildrenIds,
     });
@@ -54,12 +60,14 @@ export default function EditorChildrenIds({ childrenIds, onChange }: EditorChild
   // 渲染每个子编辑块 及 它们之间的添加 新增按钮
   return (
     <>
-      {childrenIds.map((childId, i) => (
-        <Fragment key={childId}>
-          <AddBlockButton onSelect={(block) => insertBlock(block, i)} />
-          <EditorBlock id={childId} />
-        </Fragment>
-      ))}
+      {childrenIds.map((childId, i) => {
+        return (
+          <Fragment key={childId}>
+            <AddBlockButton onSelect={(block) => insertBlock(block, i)} />
+            <EditorBlock id={childId} />
+          </Fragment>
+        );
+      })}
       {/* 新增组件的 icon按钮 */}
       <AddBlockButton onSelect={appendBlock} />
     </>

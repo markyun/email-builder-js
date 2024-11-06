@@ -18,9 +18,27 @@ export default function ContainerEditor({ style, props }: ContainerProps) {
     <BaseContainer style={style}>
       <EditorChildrenIds
         childrenIds={childrenIds}
-        onChange={({ block, blockId, childrenIds }) => {
+        onChange={({ block, blockId, containerBlockId, childrenIds }) => {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const ContainerBlock = {
+            type: 'Container',
+            data: {
+              style: {
+                padding: {
+                  top: 0,
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                },
+              },
+              props: {
+                childrenIds: [blockId],
+              },
+            },
+          };
           setDocument({
-            [blockId]: block,
+            // [blockId]: block,
+            [containerBlockId]: block,
             [currentBlockId]: {
               type: 'Container',
               data: {
@@ -29,7 +47,7 @@ export default function ContainerEditor({ style, props }: ContainerProps) {
               },
             },
           });
-          setSelectedBlockId(blockId);
+          setSelectedBlockId(containerBlockId);
         }}
       />
     </BaseContainer>

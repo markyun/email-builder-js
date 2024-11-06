@@ -47,7 +47,7 @@ export default function DividerButton({ buttonElement, onClick }: Props) {
           transform: 'translateX(-10px)',
           bgcolor: 'brand.blue',
           color: 'primary.contrastText',
-          zIndex: 'fab',
+          zIndex: '9999',
           '&:hover, &:active, &:focus': {
             bgcolor: 'brand.blue',
             color: 'primary.contrastText',

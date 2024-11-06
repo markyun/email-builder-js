@@ -1,6 +1,6 @@
-# @usewaypoint/document-core
+# @digitalc/document-core
 
-This is the core library used to build the email messages at [Waypoint](https://www.usewaypoint.com). It is non-opinionated and light on dependencies so that it can be used to compose complex documents.
+This is the core library used to build the email messages. It is non-opinionated and light on dependencies so that it can be used to compose complex documents.
 
 > [!WARNING]
 > This library is still under development and the final interface is subject
@@ -11,7 +11,7 @@ This is the core library used to build the email messages at [Waypoint](https://
 **Installation with npm**
 
 ```
-npm install --save @usewaypoint/document-core
+npm install --save @digitalc/document-core
 ```
 
 ## Usage

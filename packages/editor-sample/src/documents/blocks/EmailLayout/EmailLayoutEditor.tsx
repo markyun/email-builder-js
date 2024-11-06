@@ -37,7 +37,6 @@ export default function EmailLayoutEditor(props: EmailLayoutProps) {
   const childrenIds = props.childrenIds ?? [];
   const document = useDocument();
   const currentBlockId = useCurrentBlockId();
-
   return (
     <div
       data-cee="Email Layout Editor"
@@ -84,9 +83,28 @@ export default function EmailLayoutEditor(props: EmailLayoutProps) {
             <td>
               <EditorChildrenIds
                 childrenIds={childrenIds}
-                onChange={({ block, blockId, childrenIds }) => {
+                onChange={({ block, blockId, containerBlockId, childrenIds }) => {
+                  const ContainerBlock = {
+                    type: 'Container',
+                    data: {
+                      style: {
+                        padding: {
+                          top: 0,
+                          bottom: 0,
+                          left: 0,
+                          right: 0,
+                        },
+                      },
+                      props: {
+                        childrenIds:
+                          [blockId]
+                        ,
+                      },
+                    },
+                  };
                   setDocument({
                     [blockId]: block,
+                    [containerBlockId]: ContainerBlock,
                     [currentBlockId]: {
                       type: 'EmailLayout',
                       data: {

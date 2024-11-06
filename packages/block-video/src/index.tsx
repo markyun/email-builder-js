@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import React, { CSSProperties } from 'react';
+import ReactPlayer from 'react-player/lazy';
 import { z } from 'zod';
-
-import EmailMarkdown from './EmailMarkdown';
 
 const FONT_FAMILY_SCHEMA = z
   .enum([
@@ -63,7 +62,7 @@ const PADDING_SCHEMA = z
 const getPadding = (padding: z.infer<typeof PADDING_SCHEMA>) =>
   padding ? `${padding.top}px ${padding.right}px ${padding.bottom}px ${padding.left}px` : undefined;
 
-export const TextPropsSchema = z.object({
+export const VideoPropsSchema = z.object({
   style: z
     .object({
       color: COLOR_SCHEMA,
@@ -80,20 +79,21 @@ export const TextPropsSchema = z.object({
     .nullable(),
   props: z
     .object({
-      markdown: z.boolean().optional().nullable(),
       text: z.string().optional().nullable(),
+      url: z.string().optional().nullable(),
+      controls: z.boolean().optional().nullable(),
     })
     .optional()
     .nullable(),
 });
 
-export type TextProps = z.infer<typeof TextPropsSchema>;
+export type VideoProps = z.infer<typeof VideoPropsSchema>;
 
-export const TextPropsDefaults = {
-  text: '',
+export const VideoPropsDefaults = {
+  url: '',
 };
 
-export function Text({ style, props }: TextProps) {
+export function DigixVideo({ style, props }: VideoProps) {
   const wStyle: CSSProperties = {
     color: style?.color ?? undefined,
     backgroundColor: style?.backgroundColor ?? undefined,
@@ -106,13 +106,18 @@ export function Text({ style, props }: TextProps) {
     whiteSpace: 'normal',
   };
 
-  const text = props?.text ?? TextPropsDefaults.text;
-  if (props?.markdown) {
-    return <EmailMarkdown style={wStyle} markdown={text} />;
+  const url = props?.url ?? null;
+  const controls = props?.controls ?? true;
+  if (!url) {
+    return <>Please add URL in VideoSidebarPanel</>;
   }
   return (
     <div style={wStyle}>
-      {text}
+      {/* <video controls>
+        <source src={url} type="video/mp4"/>
+        Your browser does not support the video tag.
+      </video> */}
+      <ReactPlayer className="cee-react-player" url={url} controls={controls} />
     </div>
   );
 }

@@ -3112,6 +3112,7 @@ export default function TextSidebarPanel({ data, setData }: TextSidebarPanelProp
               'strike',
               'underline',
               'quote',
+              'link',
               'olist',
               'ulist',
               'todo',

@@ -1,6 +1,5 @@
-/* eslint-disable  */
 import { defineConfig } from 'vite';
-import dts from 'vite-plugin-dts';
+import dts from "vite-plugin-dts";
 
 export default defineConfig({
   plugins: [
@@ -8,7 +7,7 @@ export default defineConfig({
         copyDtsFiles: true,
         cleanVueFileName: true,
         rollupTypes: true,
-        tsconfigPath: './tsconfig.build.json' ,
+        tsconfigPath: "./tsconfig.build.json" ,
         include: ['src/'],
     }),
   ],

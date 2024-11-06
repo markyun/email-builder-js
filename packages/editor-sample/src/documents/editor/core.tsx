@@ -10,6 +10,7 @@ import { Image, ImagePropsSchema } from '@usewaypoint/block-image';
 import { Spacer, SpacerPropsSchema } from '@usewaypoint/block-spacer';
 import { Text, TextPropsSchema } from '@digitalc/block-text';
 import { DigixVideo, VideoPropsSchema } from '@digitalc/block-video';
+
 import {
   buildBlockComponent,
   buildBlockConfigurationDictionary,
@@ -18,6 +19,8 @@ import {
 
 import ColumnsContainerEditor from '../blocks/ColumnsContainer/ColumnsContainerEditor';
 import ColumnsContainerPropsSchema from '../blocks/ColumnsContainer/ColumnsContainerPropsSchema';
+import GridContainerEditor from '../blocks/GridContainer/GridContainerEditor';
+import GridContainerPropsSchema from '../blocks/GridContainer/ColumnsContainerPropsSchema';
 import ContainerEditor from '../blocks/Container/ContainerEditor';
 import ContainerPropsSchema from '../blocks/Container/ContainerPropsSchema';
 import EmailLayoutEditor from '../blocks/EmailLayout/EmailLayoutEditor';
@@ -123,6 +126,14 @@ const EDITOR_DICTIONARY = buildBlockConfigurationDictionary({
     Component: (props) => (
       <EditorBlockWrapper>
         <DigixVideo {...props} />
+      </EditorBlockWrapper>
+    ),
+  },
+  GridContainer: {
+    schema: GridContainerPropsSchema,
+    Component: (props) => (
+      <EditorBlockWrapper>
+        <GridContainerEditor {...props} />
       </EditorBlockWrapper>
     ),
   },

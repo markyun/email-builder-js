@@ -25,6 +25,7 @@ export default function VideoSidebarPanel({ data, setData }) {
 
   return (
     <BaseSidebarPanel title="Video block">
+      <span>Can only be used in web scenarios</span>
       <TextInput
         label="Url"
         rows={5}

@@ -1,6 +1,6 @@
 {
   "name": "@digitalc/email-builder",
-  "version": "0.0.4",
+  "version": "0.0.7",
   "description": "CEE DIY React component to render email messages",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -32,8 +32,9 @@
     "@usewaypoint/block-button": "^0.0.3",
     "@digitalc/block-text": "^0.0.5",
     "@digitalc/block-columns-container": "^0.0.1",
-    "@usewaypoint/block-container": "^0.0.2",
+    "@digitalc/block-container": "^0.0.7",
     "@digitalc/block-divider": "^0.0.1",
+    "@digitalc/block-video": "^0.0.5",
     "@usewaypoint/block-heading": "^0.0.3",
     "@usewaypoint/block-html": "^0.0.3",
     "@usewaypoint/block-image": "^0.0.5",

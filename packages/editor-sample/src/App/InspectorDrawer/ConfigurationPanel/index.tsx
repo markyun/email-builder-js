@@ -17,6 +17,8 @@ import ImageSidebarPanel from './input-panels/ImageSidebarPanel';
 import SpacerSidebarPanel from './input-panels/SpacerSidebarPanel';
 import TextSidebarPanel from './input-panels/TextSidebarPanel';
 import VideoSidebarPanel from './input-panels/VideoSidebarPanel';
+import GridContainerSidebarPanel from './input-panels/GridContainerSidebarPanel';
+
 
 function renderMessage(val: string) {
   return (
@@ -67,6 +69,9 @@ export default function ConfigurationPanel() {
       return <TextSidebarPanel key={selectedBlockId} data={data} setData={(data) => setBlock({ type, data })} />;
     case 'Video':
       return <VideoSidebarPanel key={selectedBlockId} data={data} setData={(data) => setBlock({ type, data })} />;
+    case 'GridContainer':
+      return <GridContainerSidebarPanel key={selectedBlockId} data={data} setData={(data) => setBlock({ type, data })} />;
+
     default:
       return <pre>{JSON.stringify(block, null, '  ')}</pre>;
   }

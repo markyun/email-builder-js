@@ -32,11 +32,11 @@ export default function EditorBlockWrapper({ children }: TEditorBlockWrapperProp
       // eslint-disable-next-line guard-for-in
       for (const id in nodes) {
         const node = nodes[id];
-        if (node.data && node.data.props) {
+        if (node?.data && node?.data?.props) {
           // 检查是否是ColumnsContainer类型的节点
-          if (node.type === 'ColumnsContainer') {
-            const columnIndex = node.data.props.columns.findIndex((column) => {
-              return column.childrenIds && column.childrenIds.includes(currentId);
+          if (node?.type === 'ColumnsContainer' || node?.type === 'GridContainer') {
+            const columnIndex = node?.data?.props?.columns.findIndex((column) => {
+              return column?.childrenIds && column?.childrenIds.includes(currentId);
             });
             if (columnIndex !== -1) {
               hierarchy.unshift({ id, type: node.type }); // 添加当前父节点的ID和类型
@@ -44,8 +44,8 @@ export default function EditorBlockWrapper({ children }: TEditorBlockWrapperProp
             }
           }
           // 检查是否有子节点数组
-          if (Array.isArray(node.data.props.childrenIds) && node.data.props.childrenIds.includes(currentId)) {
-            hierarchy.unshift({ id, type: node.type }); // 添加当前父节点的ID和类型
+          if (Array.isArray(node?.data?.props.childrenIds) && node?.data?.props.childrenIds.includes(currentId)) {
+            hierarchy.unshift({ id, type: node?.type }); // 添加当前父节点的ID和类型
             return traverse(id); // 继续向上遍历
           }
         }

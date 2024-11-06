@@ -1,16 +1,16 @@
 import React from 'react';
 
-import { ColumnsContainer as BaseColumnsContainer } from '@digitalc/block-columns-container';
+import { GridContainer as BaseColumnsContainer } from '@digitalc/block-grid-layout';
 
 import { useCurrentBlockId } from '../../editor/EditorBlock';
 import { setDocument, setSelectedBlockId } from '../../editor/EditorContext';
 import EditorChildrenIds, { EditorChildrenChange } from '../helpers/EditorChildrenIds';
 
-import ColumnsContainerPropsSchema, { ColumnsContainerProps } from './ColumnsContainerPropsSchema';
+import GridContainerPropsSchema, { GridContainerProps } from './ColumnsContainerPropsSchema';
 
 const EMPTY_COLUMNS = [{ childrenIds: [] }, { childrenIds: [] }, { childrenIds: [] }];
 
-export default function ColumnsContainerEditor({ style, props }: ColumnsContainerProps) {
+export default function GridContainerEditor({ style, props }: GridContainerProps) {
   const currentBlockId = useCurrentBlockId();
 
   const { columns, ...restProps } = props ?? {};
@@ -42,8 +42,8 @@ export default function ColumnsContainerEditor({ style, props }: ColumnsContaine
       [blockId]: block,
       [containerBlockId]: ContainerBlock,
       [currentBlockId]: {
-        type: 'ColumnsContainer',
-        data: ColumnsContainerPropsSchema.parse({
+        type: 'GridContainer',
+        data: GridContainerPropsSchema.parse({
           style,
           props: {
             ...restProps,
@@ -63,6 +63,9 @@ export default function ColumnsContainerEditor({ style, props }: ColumnsContaine
         <EditorChildrenIds childrenIds={columns?.[0]?.childrenIds} onChange={(change) => updateColumn(0, change)} />,
         <EditorChildrenIds childrenIds={columns?.[1]?.childrenIds} onChange={(change) => updateColumn(1, change)} />,
         <EditorChildrenIds childrenIds={columns?.[2]?.childrenIds} onChange={(change) => updateColumn(2, change)} />,
+        <EditorChildrenIds childrenIds={columns?.[3]?.childrenIds} onChange={(change) => updateColumn(3, change)} />,
+        <EditorChildrenIds childrenIds={columns?.[4]?.childrenIds} onChange={(change) => updateColumn(4, change)} />,
+        <EditorChildrenIds childrenIds={columns?.[5]?.childrenIds} onChange={(change) => updateColumn(5, change)} />,
       ]}
     />
   );

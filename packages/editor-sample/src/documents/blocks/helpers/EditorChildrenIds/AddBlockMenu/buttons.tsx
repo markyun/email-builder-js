@@ -12,6 +12,7 @@ import {
   SmartButtonOutlined,
   ViewColumnOutlined,
   OndemandVideoOutlined,
+  GridOnOutlined,
 } from '@mui/icons-material';
 
 import { TEditorBlock } from '../../../../editor/core';
@@ -146,7 +147,7 @@ export const BUTTONS: TButtonProps[] = [
     }),
   },
   {
-    label: 'Columns',
+    label: 'Email Columns',
     icon: <ViewColumnOutlined />,
     block: () => ({
       type: 'ColumnsContainer',
@@ -157,6 +158,21 @@ export const BUTTONS: TButtonProps[] = [
           columns: [{ childrenIds: [] }, { childrenIds: [] }, { childrenIds: [] }],
         },
         style: { padding: { top: 8, bottom: 8, left: 16, right: 16 } },
+      },
+    }),
+  },
+  {
+    label: 'Grid Layout',
+    icon: <GridOnOutlined />,
+    block: () => ({
+      type: 'GridContainer',
+      data: {
+        props: {
+          flexDirection: 'row',
+          columnsCount: 3,
+          columns: [{ childrenIds: [] }, { childrenIds: [] }, { childrenIds: [] }, { childrenIds: [] }, { childrenIds: [] }, { childrenIds: [] }],
+        },
+        style: { flex: 'flex', alignItems: 'stretch', padding: { top: 8, bottom: 8, left: 16, right: 16 } },
       },
     }),
   },

@@ -18,8 +18,6 @@ type EditorBlockProps = {
 export default function EditorBlock({ id }: EditorBlockProps) {
   const document = useDocument();
   const block = document[id];
-  // console.log('🚀 ~ 当前 ~ document:', document, block);
-
   if (!block) {
     throw new Error('Could not find block');
   }

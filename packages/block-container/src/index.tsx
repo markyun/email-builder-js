@@ -38,6 +38,9 @@ export const ContainerPropsSchema = z.object({
       left: z.any().optional().nullable(),
       bottom: z.any().optional().nullable(),
       top: z.any().optional().nullable(),
+      height: z.any().optional().nullable(),
+      contentAlignment: z.enum(['center', 'flex-start', 'flex-end', 'stretch']).optional().nullable(),
+
     })
     .optional()
     .nullable(),
@@ -57,6 +60,7 @@ function getBorder(style: ContainerProps['style']) {
 
 export function Container({ style, children }: ContainerProps) {
   const { url, bgSetting } = style ?? {};
+  const contentAlignment = style?.contentAlignment || 'center';
   let wStyle: CSSProperties = {
     position: 'relative',
     backgroundColor: style?.backgroundColor ?? undefined,
@@ -67,6 +71,12 @@ export function Container({ style, children }: ContainerProps) {
     right: `${style?.float?.right}px`,
     left: `${style?.float?.left}px`,
     top: `${style?.float?.top}px`,
+
+    height: style?.height ? `${style?.height}%` : 'auto',
+    display: style?.height ? 'flex' : undefined,
+    alignItems: style?.height ? contentAlignment : 'center',
+    justifyContent: style?.height ? 'center' : undefined,
+
     bottom: `${style?.float?.bottom}px`,
     backgroundImage: url ? `url(${url})` : '',
   };
@@ -81,10 +91,17 @@ export function Container({ style, children }: ContainerProps) {
       right: `${style?.float?.right}px`,
       left: `${style?.float?.left}px`,
       top: `${style?.float?.top}px`,
+
+      height: style?.height ? `${style?.height}%` : 'auto',
+      display: style?.height ? 'flex' : undefined,
+      alignItems: style?.height ? contentAlignment : 'center',
+      justifyContent: style?.height ? 'center' : undefined,
+
       bottom: `${style?.float?.bottom}px`,
       background: url ? `url(${style?.url}) ${bgSetting}` : `${bgSetting}`,
     };
   }
+
   if (!children) {
     return <div style={wStyle} />;
   }

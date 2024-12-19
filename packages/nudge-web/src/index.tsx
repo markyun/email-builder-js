@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-import React, { CSSProperties } from 'react';
-import ReactPlayer from 'react-player/lazy';
+import React, { useEffect, useRef } from 'react';
 import { z } from 'zod';
 
 const FONT_FAMILY_SCHEMA = z
@@ -18,6 +17,7 @@ const FONT_FAMILY_SCHEMA = z
   .nullable()
   .optional();
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getFontFamily(fontFamily: z.infer<typeof FONT_FAMILY_SCHEMA>) {
   // eslint-disable-next-line default-case
   switch (fontFamily) {
@@ -62,17 +62,13 @@ const PADDING_SCHEMA = z
 const getPadding = (padding: z.infer<typeof PADDING_SCHEMA>) =>
   padding ? `${padding.top}px ${padding.right}px ${padding.bottom}px ${padding.left}px` : undefined;
 
-export const VideoPropsSchema = z.object({
+export const NudgePropsSchema = z.object({
+  elementId: z.string().optional().nullable(),
+  elementType: z.enum(['text', 'image', 'button']).optional().nullable(),
+  elementContent: z.any().optional().nullable(),
   style: z
     .object({
       color: COLOR_SCHEMA,
-      backgroundColor: COLOR_SCHEMA,
-      fontSize: z.number().gte(0).optional().nullable(),
-      whiteSpace: z.number().gte(0).optional().nullable(),
-      lineHeight: z.number().gte(0).optional().nullable(),
-      fontFamily: FONT_FAMILY_SCHEMA,
-      fontWeight: z.enum(['bold', 'normal']).optional().nullable(),
-      textAlign: z.enum(['left', 'center', 'right']).optional().nullable(),
       padding: PADDING_SCHEMA,
     })
     .optional()
@@ -80,46 +76,66 @@ export const VideoPropsSchema = z.object({
   props: z
     .object({
       text: z.string().optional().nullable(),
-      url: z.string().optional().nullable(),
-      controls: z.boolean().optional().nullable(),
     })
     .optional()
     .nullable(),
 });
 
-export type VideoProps = z.infer<typeof VideoPropsSchema>;
+export type NudgeProps = z.infer<typeof NudgePropsSchema>;
 
-export const VideoPropsDefaults = {
-  url: '',
+export const NudgePropsDefaults = {
+  text: 'default',
+  elementType: 'text',
+  elementContent: null,
 };
 
-export function DigixVideo({ style, props }: VideoProps) {
-  const wStyle: CSSProperties = {
-    color: style?.color ?? undefined,
-    backgroundColor: style?.backgroundColor ?? undefined,
-    fontSize: style?.fontSize ?? undefined,
-    lineHeight: style?.lineHeight ?? undefined,
-    fontFamily: getFontFamily(style?.fontFamily),
-    fontWeight: style?.fontWeight ?? undefined,
-    textAlign: style?.textAlign ?? undefined,
-    padding: getPadding(style?.padding),
-    whiteSpace: 'normal',
-    display: 'flex',
-    justifyContent: style?.textAlign ?? 'center',
-  };
 
-  const url = props?.url ?? null;
-  const controls = props?.controls ?? true;
-  if (!url) {
-    return <>Please add URL in VideoSidebarPanel</>;
+export function CEENudge({ elementId, elementType, elementContent, style, props }) {
+  const content = elementContent ?? null;
+  const text = props?.text ?? NudgePropsDefaults.text;
+
+  // 创建元素
+  let element;
+  switch (elementType) {
+    case 'text':
+      element = document.createElement('div');
+      element.textContent = content ?? text;
+      break;
+    case 'image':
+      element = document.createElement('img');
+      element.src = content as string;
+      element.alt = text;
+      break;
+    case 'button':
+      element = document.createElement('button');
+      element.textContent = content as string;
+      break;
+    default:
+      element = document.createElement('div');
+      element.textContent = content ?? text;
   }
-  return (
-    <div style={wStyle}>
-      {/* <video controls>
-        <source src={url} type="video/mp4"/>
-        Your browser does not support the video tag.
-      </video> */}
-      <ReactPlayer className="cee-react-player" url={url} controls={controls} />
-    </div>
-  );
+
+  // 设置样式
+  if (element instanceof HTMLElement) {
+    Object.assign(element.style, style);
+    element.style.position = 'fixed'; // 设置为fixed，以便悬浮
+    // 计算位置并设置
+    const targetElement = document.getElementById(elementId) || document.querySelector(`.${elementId}`);
+    if (targetElement) {
+      const rect = targetElement.getBoundingClientRect();
+      element.style.top = `${rect.top + window.scrollY}px`;
+      element.style.left = `${rect.left + window.scrollX}px`;
+    }
+  }
+
+  // 将元素添加到页面中
+  document.body.appendChild(element);
+
+  console.log("🚀 ~ CEENudge插件，将元素添加到页面中 ~ element:", element);
+  // 返回一个函数，用于清理和移除悬浮层
+  return () => {
+    if (element.parentNode) {
+      element.parentNode.removeChild(element);
+    }
+  };
 }

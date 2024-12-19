@@ -1,7 +1,7 @@
 {
-  "name": "@digitalc/block-video",
-  "version": "0.0.6",
-  "description": "@digitalc/document compatible video component",
+  "name": "@digitalc/block-grid-layout",
+  "version": "0.0.4",
+  "description": "@digitalc/document compatible web grid layout component",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -16,7 +16,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "npx tsc --project tsconfig.build.json",
+    "build": "npx rimraf dist && npx tsc --project tsconfig.build.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "iwhaleFED@126.com",
@@ -27,11 +27,6 @@
   },
   "devDependencies": {
     "@testing-library/react": "^14.2.1",
-    "@types/insane": "^1.0.0"
-  },
-  "dependencies": {
-    "insane": "^2.6.2",
-    "marked": "^12.0.2",
-    "react-player": "^2.16.0"
+    "rimraf": "^5.0.10"
   }
 }

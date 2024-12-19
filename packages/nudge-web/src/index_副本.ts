@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-import React, { CSSProperties } from 'react';
-import ReactPlayer from 'react-player/lazy';
+import React from 'react';
 import { z } from 'zod';
 
 const FONT_FAMILY_SCHEMA = z
@@ -18,6 +17,7 @@ const FONT_FAMILY_SCHEMA = z
   .nullable()
   .optional();
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getFontFamily(fontFamily: z.infer<typeof FONT_FAMILY_SCHEMA>) {
   // eslint-disable-next-line default-case
   switch (fontFamily) {
@@ -62,17 +62,13 @@ const PADDING_SCHEMA = z
 const getPadding = (padding: z.infer<typeof PADDING_SCHEMA>) =>
   padding ? `${padding.top}px ${padding.right}px ${padding.bottom}px ${padding.left}px` : undefined;
 
-export const VideoPropsSchema = z.object({
+export const NudgePropsSchema = z.object({
+  elementId: z.string().optional().nullable(),
+  elementType: z.enum(['text', 'image', 'button']).optional().nullable(),
+  elementContent: z.any().optional().nullable(),
   style: z
     .object({
       color: COLOR_SCHEMA,
-      backgroundColor: COLOR_SCHEMA,
-      fontSize: z.number().gte(0).optional().nullable(),
-      whiteSpace: z.number().gte(0).optional().nullable(),
-      lineHeight: z.number().gte(0).optional().nullable(),
-      fontFamily: FONT_FAMILY_SCHEMA,
-      fontWeight: z.enum(['bold', 'normal']).optional().nullable(),
-      textAlign: z.enum(['left', 'center', 'right']).optional().nullable(),
       padding: PADDING_SCHEMA,
     })
     .optional()
@@ -80,46 +76,56 @@ export const VideoPropsSchema = z.object({
   props: z
     .object({
       text: z.string().optional().nullable(),
-      url: z.string().optional().nullable(),
-      controls: z.boolean().optional().nullable(),
     })
     .optional()
     .nullable(),
 });
 
-export type VideoProps = z.infer<typeof VideoPropsSchema>;
+export type NudgeProps = z.infer<typeof NudgePropsSchema>;
 
-export const VideoPropsDefaults = {
-  url: '',
+export const NudgePropsDefaults = {
+  text: 'default',
+  elementType: 'text',
+  elementContent: null,
 };
 
-export function DigixVideo({ style, props }: VideoProps) {
+export function CEENudge({ elementId, elementType, elementContent, style, props }: NudgeProps) {
   const wStyle: CSSProperties = {
     color: style?.color ?? undefined,
-    backgroundColor: style?.backgroundColor ?? undefined,
-    fontSize: style?.fontSize ?? undefined,
-    lineHeight: style?.lineHeight ?? undefined,
-    fontFamily: getFontFamily(style?.fontFamily),
-    fontWeight: style?.fontWeight ?? undefined,
-    textAlign: style?.textAlign ?? undefined,
     padding: getPadding(style?.padding),
     whiteSpace: 'normal',
-    display: 'flex',
-    justifyContent: style?.textAlign ?? 'center',
   };
 
-  const url = props?.url ?? null;
-  const controls = props?.controls ?? true;
-  if (!url) {
-    return <>Please add URL in VideoSidebarPanel</>;
+  const content = elementContent ?? null;
+
+  // 创建元素
+  let element;
+  switch (elementType) {
+    case 'text':
+      element = document.createTextNode(content);
+      break;
+    case 'image':
+      element = document.createElement('img');
+      element.src = content as string;
+      element.alt = content;
+      break;
+    case 'button':
+      element = document.createElement('button');
+      element.textContent = content as string;
+      break;
+    default:
+      element = document.createTextNode(content);
   }
-  return (
-    <div style={wStyle}>
-      {/* <video controls>
-        <source src={url} type="video/mp4"/>
-        Your browser does not support the video tag.
-      </video> */}
-      <ReactPlayer className="cee-react-player" url={url} controls={controls} />
-    </div>
-  );
+
+  // 设置样式
+  if (element instanceof HTMLElement) {
+    Object.assign(element.style, wStyle);
+  }
+
+  // 找到目标元素并附加新元素
+  const targetElement = document.getElementById(elementId) || document.querySelector(`.${elementId}`);
+  console.log('appendChild element::', element);
+  if (targetElement) {
+    targetElement.appendChild(element);
+  }
 }

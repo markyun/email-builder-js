@@ -1,6 +1,6 @@
 {
   "name": "@digitalc/email-builder",
-  "version": "0.0.7",
+  "version": "0.0.11",
   "description": "CEE DIY React component to render email messages",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -16,7 +16,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "npx tsc --project tsconfig.build.json",
+    "build": "npx rimraf dist && npx tsc --project tsconfig.build.json",
     "builds": "vite build",
     "lint": "eslint --fix --ext .tsx src"
   },
@@ -28,13 +28,14 @@
     "zod": "^1 || ^2 || ^3"
   },
   "dependencies": {
+    "@digitalc/block-columns-container": "^0.0.1",
+    "@digitalc/block-container": "^0.0.8",
+    "@digitalc/block-divider": "^0.0.1",
+    "@digitalc/block-grid-layout": "^0.0.4",
+    "@digitalc/block-text": "^0.0.5",
+    "@digitalc/block-video": "^0.0.6",
     "@usewaypoint/block-avatar": "^0.0.3",
     "@usewaypoint/block-button": "^0.0.3",
-    "@digitalc/block-text": "^0.0.5",
-    "@digitalc/block-columns-container": "^0.0.1",
-    "@digitalc/block-container": "^0.0.7",
-    "@digitalc/block-divider": "^0.0.1",
-    "@digitalc/block-video": "^0.0.5",
     "@usewaypoint/block-heading": "^0.0.3",
     "@usewaypoint/block-html": "^0.0.3",
     "@usewaypoint/block-image": "^0.0.5",
@@ -46,5 +47,8 @@
     "vite-plugin-dts": "^4.2.1",
     "zod": "^1 || ^2 || ^3",
     "zustand": "^4.5.1"
+  },
+  "devDependencies": {
+    "rimraf": "^5.0.10"
   }
 }
